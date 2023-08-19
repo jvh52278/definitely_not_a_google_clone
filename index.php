@@ -9,5 +9,6 @@
 <body>
     <h1>Test message</h1>
     <h2>This will be blank for now</h2>
+    <a href="./main.php">test link</a>
 </body>
 </html>
