@@ -1,0 +1,24 @@
+/*delete the database if it exists -- start from a clean slate*/
+DROP DATABASE IF EXISTS youtube_clone;
+/*create the database*/
+CREATE DATABASE youtube_clone;
+/*create the tables*/
+/*datatype: int*/
+/*datatype: varchar(500)*/
+USE youtube_clone;
+CREATE TABLE users (
+user_id varchar(500) NOT NULL,
+user_name varchar(500) NOT NULL,
+password varchar(500) NOT NULL,
+PRIMARY KEY (user_id)
+);
+CREATE TABLE videos (
+video_id varchar(500) NOT NULL,
+title varchar(500) NOT NULL,
+description varchar(500) NOT NULL,
+uploader varchar(500) NOT NULL,
+upload_date int NOT NULL,
+path_to_video_file varchar(500) NOT NULL,
+path_to_thumbnail varchar(500) NOT NULL,
+PRIMARY KEY (video_id)
+);

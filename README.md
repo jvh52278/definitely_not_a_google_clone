@@ -24,3 +24,6 @@ ffmpeg -> using version 4.4.2
 Developed and tested on ubuntu 22.04, but Linux is not required.
 <br>
 Tools and dependencies are also available on windows.
+<br>
+<br>
+to get started, run the sql code in the file "not_youtube_sql_setup.txt" to setup the database
