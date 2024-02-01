@@ -6,8 +6,13 @@
     <title>home page</title>
 </head>
 <body>
-    <?php
-
-    ?>
+    <!-- div containing page content -->
+    <div id="main_content">
+        <!-- common header section-->
+        <?php 
+            // link the common header file
+            include "./common_header.php";
+        ?>
+    </div>
 </body>
 </html>

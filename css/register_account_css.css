@@ -1,0 +1,94 @@
+/* ### for the page body/background ###*/
+body {
+    background-color: rgba(255, 166, 0, 0.468); /* set the background of the page to orange */
+}
+
+/* ### for the page contents ### */
+
+/* for the registration section */
+#page_contents { 
+    background-color: lightgrey; /* set the backgound to light gray */
+    border-style: solid; /* create a solid line border */
+    border-width: 1px; /* set the width of the border to 1px */
+    width: 50%; /* set the width to 50% of the total page width */
+    margin-left: auto; /* center horizontally */
+    margin-right: auto; /* center horizontally */
+    margin-top: 10px; /* add 10px of space to the top */
+    margin-bottom: 10px; /* add 10px of space to the bottom */
+}
+/* for the header of the registration section */
+#register_user_header { 
+    margin-top: 10px; /* add 50px of space to the top */
+    margin-bottom: 40px; /* add 10px of space to the bottom*/
+    text-align: center; /* center horizontally */
+}
+/* for each pair of input and label*/
+.input_combo {
+    text-align: center; /* center horizontally*/
+}
+/* for each label within each label-input pair*/
+.input_combo > label {
+    width: 120px; /* set the width to 120px */
+    font-size: 20px; /* set the font size to 20px */
+    margin: 10px; /* add 15px to all sides */
+    display: inline-block; /* set display mode to inline-block, so that more css properties can be applied */
+    font-weight: bold; /* make the font bold */
+}
+/* for each input of within each label-input pair */
+.input_combo > input {
+    font-size: 20px; /* set font size to 20px */
+    width: 50%; /* set width to 50% of available width */
+}
+/* for later: for each error message within each label-input pair */
+.input_combo > p {
+    font-size: 20px; /* make the font size 20px */
+    color: red; /* make the color red */
+    width: 65%; /* make the width 65% of available width*/
+    margin-left: auto; /* center horizontally */
+    margin-right: auto; /* center horizontally */
+}
+/* for the form submit button */
+#user_register_form_submit {
+    display: block; /* set display mode to block */
+    margin-left: auto; /* center horizontally */
+    margin-right: auto; /* center horizontally */
+    margin-top: 10px; /* add 10px to the top */
+    margin-bottom: 10px; /* add 10px to the bottom */
+    font-size: 20px; /* increase font to 20px */
+    border: none; /* remove the border */
+    background-color: orange; /* make the background orange*/
+    font-weight: bold; /* make the font bold */
+    padding: 10px; /* add 10px of visible space on all sides*/
+}
+/* when the mouse cursor hovers over the submit button*/
+#user_register_form_submit:hover { 
+    cursor: pointer; /* change the cursor to a hand/select symbol */
+    background-color: darkblue; /* change the background color to dark blue */
+    color: white; /* change the text color to white */
+}
+/* for any link sections*/
+.link_section {
+    width: 20%; /* change width to 20% of available width */
+    margin-top: 10px; /* add 10px to the top */
+    margin-bottom: 10px; /* add 10px to the bottom */
+    margin-left: auto; /* centre horizontally */
+    margin-right: auto; /* centre horizontally */
+}
+/* for any links in a link section*/
+.link_section a {
+    text-align: center; /* center horizontally */
+    display: block; /* set display mode to block */
+    background-color: orange; /* change background color to orange */
+    text-decoration: none; /* remove the link underline */
+    padding: 10px; /* add 10px of visible space to each side */
+    font-size: 20px; /* change to the font to 20px */
+    color: black; /* change to font color to black*/
+    margin-top: 10px; /* add 10px to the top */
+    margin-bottom: 10px; /* add 10px to the bottom */
+}
+/* when the cursor hovers over a link in a link section */
+.link_section a:hover {
+    cursor: pointer; /* change the cursor to a hand/select symbol */
+    background-color: darkblue; /* change the background color to dark blue */
+    color: white; /* change the text color to white */
+}

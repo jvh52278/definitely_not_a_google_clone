@@ -10,5 +10,9 @@
     <h1>Test message</h1>
     <h2>This will be blank for now</h2>
     <a href="./main.php">test link</a>
+    <?php
+        // temporarily redirect to youtube clone main page
+        header("Location: ./main.php")
+    ?>
 </body>
 </html>
