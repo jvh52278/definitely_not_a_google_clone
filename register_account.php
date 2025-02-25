@@ -27,9 +27,9 @@
             </div>
             <!-- div containing label-input combo for password -->
             <div class="input_combo">
-                <!-- label for the username input -->
+                <!-- label for the password input -->
                 <label for="password">Password</label>
-                <!-- input for the username-->
+                <!-- input for the password-->
                 <input type="text" name="password" id="password">
             </div>
             <!-- form submit button -->
