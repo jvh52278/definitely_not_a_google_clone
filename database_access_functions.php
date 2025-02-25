@@ -198,6 +198,23 @@ class database_access_object {
         // close the prepared query
         $prepared_sql_query->close();
     }
+    // create a random text string
+    function create_random_string () {
+        // get the time and date in unix time
+        //$current_date_time = date('Y-m-d H:i:s');
+        //$current_date_time = strtotime($current_date_time);
+        $current_date_time = round(microtime(true),3)*1000;
+        // create a random 10 char string
+        $possible_chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!_-+=";
+        $random_string = "";
+        for ($x = 0; $x <= 10; $x = $x + 1) {
+            $random_index = rand(0,strlen($possible_chars) - 1);
+            $random_string = $random_string.$possible_chars[$random_index];
+        }
+        // append the random string to (after) the time stamp
+        $random_string_complete = strval($current_date_time).$random_string;
+        return $random_string_complete;
+    }
     
 }
 // ############# create the instance of class here - so that database access information can easily be changed for other deployments #########
