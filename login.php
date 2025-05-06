@@ -9,11 +9,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>login</title>
+    <link rel="stylesheet" href="./css/colours.css">
     <link rel="stylesheet" href="./css/login.css">
 </head>
 <body>
     <div id="page_contents">
-        <h1 style="text-align: center;">Login</h1>
+        <h1 style="text-align: center; color: var(--primary_text_color_1)">Login</h1>
         <!--the user login form-->
         <form action="" method="post" id="login_form" name="login_form">
             <!--username input-->

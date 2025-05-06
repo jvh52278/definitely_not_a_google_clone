@@ -1,0 +1,10 @@
+:root {
+    --primary_page_background: black;
+    --primary_element_background: darkorange;
+    --primary_text_color_1: darkorange;
+    --primary_text_color_2: black;
+    --element_hover_background_color: darkblue;
+    --element_hover_text_color: white;
+    --primary_border_color_1: darkorange;
+    --primary_border_color_2: black;
+}

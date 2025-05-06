@@ -1,10 +1,12 @@
 body {
-    background-color: rgba(255, 166, 0, 0.468); /* set the background of the page to orange */
+    /*background-color: rgba(255, 166, 0, 0.468); /* set the background of the page to orange */
+    background-color: var(--primary_page_background);
 }
 
 #page_contents {
-    background-color: lightgrey; /* set the backgound to light gray */
+    background-color: var(--primary_page_background); /* set color */
     border-style: solid; /* create a solid line border */
+    border-color: var(--primary_border_color_1);
     border-width: 1px; /* set the width of the border to 1px */
     width: 50%; /* set the width to 50% of the total page width */
     margin-left: auto; /* center horizontally */
@@ -25,19 +27,19 @@ body {
 .link_section a {
     text-align: center; /* center horizontally */
     display: block; /* set display mode to block */
-    background-color: orange; /* change background color to orange */
+    background-color: var(--primary_element_background); /*set background color */
     text-decoration: none; /* remove the link underline */
     padding: 10px; /* add 10px of visible space to each side */
     font-size: 20px; /* change to the font to 20px */
-    color: black; /* change to font color to black*/
+    color: var(--primary_border_color_2); /* change to font color to black*/
     margin-top: 10px; /* add 10px to the top */
     margin-bottom: 10px; /* add 10px to the bottom */
 }
 /* when the cursor hovers over a link in a link section */
 .link_section a:hover {
     cursor: pointer; /* change the cursor to a hand/select symbol */
-    background-color: darkblue; /* change the background color to dark blue */
-    color: white; /* change the text color to white */
+    background-color: var(--element_hover_background_color); /* change the background color to dark blue */
+    color: var(--element_hover_text_color); /* change the text color to white */
 }
 
 /* for each pair of input and label*/
@@ -51,6 +53,7 @@ body {
     margin: 10px; /* add 15px to all sides */
     display: inline-block; /* set display mode to inline-block, so that more css properties can be applied */
     font-weight: bold; /* make the font bold */
+    color: var(--primary_border_color_1);
 }
 /* for each input of within each label-input pair */
 .input_combo > input {
@@ -75,13 +78,14 @@ body {
     margin-bottom: 10px; /* add 10px to the bottom */
     font-size: 20px; /* increase font to 20px */
     border: none; /* remove the border */
-    background-color: orange; /* make the background orange*/
+    background-color: var(--primary_element_background); /* make the background orange*/
+    color: var(--primary_text_color_2);
     font-weight: bold; /* make the font bold */
     padding: 10px; /* add 10px of visible space on all sides*/
 }
 /* when the mouse cursor hovers over the submit button*/
 #login_submit:hover { 
     cursor: pointer; /* change the cursor to a hand/select symbol */
-    background-color: darkblue; /* change the background color to dark blue */
-    color: white; /* change the text color to white */
+    background-color: var(--element_hover_background_color); /* change the background color to dark blue */
+    color: var(--element_hover_text_color); /* change the text color to white */
 }

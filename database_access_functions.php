@@ -215,6 +215,10 @@ class database_access_object {
         $random_string_complete = strval($current_date_time).$random_string;
         return $random_string_complete;
     }
+    // check if value exists in a database column
+    function check_if_value_exists ($value_to_check_for) {
+
+    }
     
 }
 // ############# create the instance of class here - so that database access information can easily be changed for other deployments #########
