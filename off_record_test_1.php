@@ -12,12 +12,17 @@
         error_reporting(E_ALL);
         // include the external class file
         include "./database_access_functions.php";
+        include "./common_utility_functions.php";
         // create an instance of the class
         $database_access_object = new database_access_object();
         // ## test set database access info
         $database_access_object->set_database_access_variables("sqladmin","sqladmin","youtube_clone","localhost");
         $test_value = $database_access_object->create_random_string();
         echo $test_value;
+        echo "<br>";
+        echo strtolower("FUck");
+        echo "<br>";
+        check_if_string_contains_substring("renovadMinman","aDmin");
         // #####################################################
         // ## test retrieve all records no filtering
             /*
