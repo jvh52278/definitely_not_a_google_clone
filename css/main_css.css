@@ -1,0 +1,11 @@
+body {
+    background-color: var(--primary_page_background); /*set background color*/
+}
+
+#main_content {
+    /*center the page content*/
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    /*                        */
+}

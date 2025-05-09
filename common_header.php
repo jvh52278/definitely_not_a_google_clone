@@ -30,11 +30,16 @@
     </body>
     <style>
         #common_header {
-            background-color: orange; /* make the background of the header section orange */
+            /*background-color: orange; /* set background color */
             display: flex; /* make the three sections of the header display side by side */
+            border-style: solid;
+            border-color: var(--primary_border_color_1);
         }
         #left_section {
             flex: 1; /* make the left section take up 1/3 of the width of the common header */
+            background-color: var(--primary_element_background); /* set background color */
+            border-style: solid;
+            border-color: var(--primary_border_color_1);
         }
         #middle_section {
             flex: 1; /* make the middle section take up 1/3 of the width of the common header */
@@ -48,6 +53,8 @@
         }
         #middle_section #search_bar_submit {
             font-size: 20px; /* increase the font size of the submit button to 20px */;
+            background-color: var(--primary_element_background); /* set background color */
+            border-color: var(--primary_border_color_1);
         }
         #middle_section #search_bar {
             margin: 10px; /* add 10px of space to the top, bottom, left and right of the search bar section */
@@ -59,12 +66,13 @@
         }
         #right_section #links_section a {
             text-decoration: none; /* for the links in the links section, remove the underline */
-            color: black;/* for the links in the links section, make the font black */
+            color: var(--primary_text_color_2);/* for the links in the links section, make the font black */
             font-size: 20px; /* for the links in the links section, increase the font to 20px */
             margin-right: 10px; /* for the links in the links section, add 10px to the right side */
             margin-left: 10px; /* for the links in the links section, add 10px to the left side */
-            background-color: lightgray; /* make the background of link light gray */
             padding: 10px; /* add 10 px of visible space inwards to the top, bottom, left and right of each link */
+            background-color: var(--primary_element_background); /* set background color */
+            border-color: var(--primary_border_color_1);
         }
     </style>
 </html>

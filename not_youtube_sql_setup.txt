@@ -20,5 +20,6 @@ uploader varchar(500) NOT NULL,
 upload_date int NOT NULL,
 path_to_video_file varchar(500) NOT NULL,
 path_to_thumbnail varchar(500) NOT NULL,
+upload_approved_y_n varchar(500) NOT NULL,
 PRIMARY KEY (video_id)
 );

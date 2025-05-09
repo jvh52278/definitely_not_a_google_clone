@@ -1,13 +1,17 @@
 /* ### for the page body/background ###*/
 body {
-    background-color: rgba(255, 166, 0, 0.468); /* set the background of the page to orange */
+    background-color: var(--primary_page_background); /* set the background of the page */
 }
 
 /* ### for the page contents ### */
 
+.text_element {
+    color: var(--primary_text_color_1);
+}
+
 /* for the registration section */
 #page_contents { 
-    background-color: lightgrey; /* set the backgound to light gray */
+    background-color: var(--primary_page_background); /* set the backgound color */
     border-style: solid; /* create a solid line border */
     border-width: 1px; /* set the width of the border to 1px */
     width: 50%; /* set the width to 50% of the total page width */
@@ -15,6 +19,7 @@ body {
     margin-right: auto; /* center horizontally */
     margin-top: 10px; /* add 10px of space to the top */
     margin-bottom: 10px; /* add 10px of space to the bottom */
+    border-color: var(--primary_border_color_1);
 }
 /* for the header of the registration section */
 #register_user_header { 
@@ -33,6 +38,7 @@ body {
     margin: 10px; /* add 15px to all sides */
     display: inline-block; /* set display mode to inline-block, so that more css properties can be applied */
     font-weight: bold; /* make the font bold */
+    color: var(--primary_text_color_1);
 }
 /* for each input of within each label-input pair */
 .input_combo > input {
@@ -63,8 +69,8 @@ body {
 /* when the mouse cursor hovers over the submit button*/
 #user_register_form_submit:hover { 
     cursor: pointer; /* change the cursor to a hand/select symbol */
-    background-color: darkblue; /* change the background color to dark blue */
-    color: white; /* change the text color to white */
+    background-color: var(--element_hover_background_color); /* change the background color when hovered */
+    color: var(--element_hover_text_color); /* change the text color when hovered */
 }
 /* for any link sections*/
 .link_section {
@@ -89,6 +95,6 @@ body {
 /* when the cursor hovers over a link in a link section */
 .link_section a:hover {
     cursor: pointer; /* change the cursor to a hand/select symbol */
-    background-color: darkblue; /* change the background color to dark blue */
-    color: white; /* change the text color to white */
+    background-color: var(--element_hover_background_color); /* change the background color whe hovered */
+    color: var(--element_hover_text_color); /* change the text color when hovered */
 }

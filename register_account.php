@@ -9,13 +9,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
+    <link rel="stylesheet" href="./css/colours.css">
     <link rel="stylesheet" href="./css/register_account_css.css">
 </head>
 <body>
     <!-- div containing the page contents -->
     <div id="page_contents">
         <!-- the header to the registration section -->
-        <h1 id="register_user_header">Create an account</h1>
+        <h1 class="text_element" id="register_user_header">Create an account</h1>
         <!-- form containing the user registration form -->
         <form action="./register_account_processing.php" id="user_registration_form" name="user_registration_form" method="post">
             <!-- div containing label-input combo for username-->

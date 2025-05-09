@@ -1,6 +1,6 @@
 /* ### for the page body ### */
 body {
-    background-color: lightgray; /* make the background of the page body light gray */
+    background-color: var(--primary_page_background); /* set the background color */
 }
 
 /* ### for the message contents section ### */
@@ -9,14 +9,16 @@ body {
     width: 60%; /* set the maximum width to 60% of the maximum width */
     margin-left: auto; /* center horizontally*/
     margin-right: auto; /* center horizontally*/
-    background-color: orange; /* set the background color to orange */
+    background-color: var(--primary_element_background); /* set the background color*/
     padding: 10px; /* add 10px of visible space to each side */
 }
 /* for the message header */
 #message_contents > h1 {
     text-align: center; /* center horizontally */
+    color: var(--primary_text_color_2);
 }
 /* for the message text/sub-header */
 #message_contents > h2 {
     text-align: center; /* center horizontally */
+    color: var(--primary_text_color_2);
 }
