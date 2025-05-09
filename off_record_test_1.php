@@ -18,6 +18,7 @@
         $database_access_object->set_database_access_variables("sqladmin","sqladmin","youtube_clone","localhost");
         $test_value = $database_access_object->create_random_string();
         echo $test_value;
+        // #####################################################
         // ## test retrieve all records no filtering
             /*
         $results_returned = $database_access_object->retrieve_all_records_from_table("videos");

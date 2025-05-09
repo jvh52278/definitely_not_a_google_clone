@@ -216,8 +216,37 @@ class database_access_object {
         return $random_string_complete;
     }
     // check if value exists in a database column
-    function check_if_value_exists ($value_to_check_for) {
-
+    function check_if_value_exists ($value_to_check_for_any, $value_to_check_for_type_string_idsb, $column_to_check_in_string, $table_to_access_string) {
+        // retrieve all records containing value_to_check_for
+        //function prepared_statment_select_on_one_record ($table_to_access_string, $column_containing_identifying_record_1_string, 
+        //}
+        $identifying_record_1_any = $value_to_check_for_any;
+        $identifying_record_1_data_type_string_idsb = $value_to_check_for_type_string_idsb;
+        $column_containing_identifying_record_1_string = $column_to_check_in_string;
+        // ### run the sql query ###
+        $database_connection = new mysqli($this->sql_server_name, $this->database_user, $this->database_user_password, $this->database_name);
+        // step 1A: prepare the query
+        // create the query, but put a ? where a user / dynamic input would be
+        $sql_query = "SELECT * FROM $table_to_access_string WHERE $column_containing_identifying_record_1_string = ?";
+        $prepared_sql_query = $database_connection->prepare($sql_query);
+        // step 1B: bind the user / dynamic input variables to fixed data types
+        // bind_param('|input_1_datatype|input_2_datatype|....', $input_1, $input_2, .....)
+        // NOTE: the inputs go in order that they would appear in the query, left to right, where the ? are
+        $prepared_sql_query->bind_param($identifying_record_1_data_type_string_idsb, $identifying_record_1_any);
+        // step 2A: execute the prepared query
+        $prepared_sql_query->execute(); // NOTE: this does not return the result, if any exists
+        // step 2B: retrieve the results of the query and put them into an array
+        $query_results = $prepared_sql_query->get_result()->fetch_all(MYSQLI_ASSOC);
+        # check the number of records retrieved - there should be 0 rows of records found
+        if (count($query_results) != 0) {
+            //echo "duplicates found";
+            return false;
+        } else {
+            //echo "no duplicates found";
+            return true;
+        }
+        // close the prepared query
+        $prepared_sql_query->close();
     }
     
 }
