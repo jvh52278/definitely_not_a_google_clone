@@ -4,6 +4,15 @@ function trim_spaces_from_string ($variable_to_trim_any) {
     return $return_value;
 }
 
+function check_and_replace_if_variable_is_empty ($variable_to_check_any) {
+    $return_value = $variable_to_check_any;
+    # if the value is empty, return an empty string
+    if (empty($variable_to_check_any)) {
+        $return_value = "";
+    }
+    return $return_value;
+}
+
 function copy_text ($start_index_int, $end_index_int, $text_source_string) { # copy all text from (including) one index to (including) another
     $return_string = "";
     for ($x = $start_index_int; $x <= $end_index_int; $x = $x + 1) {

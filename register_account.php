@@ -1,6 +1,9 @@
 <!-- link the database access functions -->
 <?php
     include "./database_access_functions.php";
+    include "./common_utility_functions.php";
+    $display_username_error = check_and_replace_if_variable_is_empty($_POST["username_error"]);
+    $dispay_password_error = check_and_replace_if_variable_is_empty($_POST["password_error"]);
 ?>
 
 <!DOCTYPE html>
@@ -25,6 +28,8 @@
                 <label for="username">Username</label>
                 <!-- input for the username-->
                 <input type="text" name="username" id="username">
+                <!-- username field error message -->
+                <p><?php echo $display_username_error; ?></p>
             </div>
             <!-- div containing label-input combo for password -->
             <div class="input_combo">
@@ -32,6 +37,8 @@
                 <label for="password">Password</label>
                 <!-- input for the password-->
                 <input type="text" name="password" id="password">
+                <!-- password field error message -->
+                <p><?php echo $dispay_password_error; ?></p>
             </div>
             <!-- form submit button -->
             <input type="submit" name="user_register_form_submit" id="user_register_form_submit" value="Create Account">

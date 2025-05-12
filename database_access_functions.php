@@ -240,10 +240,10 @@ class database_access_object {
         # check the number of records retrieved - there should be 0 rows of records found
         if (count($query_results) != 0) {
             //echo "duplicates found";
-            return false;
+            return true;
         } else {
             //echo "no duplicates found";
-            return true;
+            return false;
         }
         // close the prepared query
         $prepared_sql_query->close();
@@ -253,6 +253,11 @@ class database_access_object {
 // ############# create the instance of class here - so that database access information can easily be changed for other deployments #########
 // create an instance of the class
 $database_access_object = new database_access_object();
-// ## test set database access info - change this to reflect your own database user, database name and server name
+// ## set database access info - change this to reflect your own database user, database name and server name
 $database_access_object->set_database_access_variables("sqladmin","sqladmin","youtube_clone","localhost");
+// set variables for other prepared statements outside of these functions - change these to reflect your own database
+$ref_database_username = "sqladmin";
+$ref_database_user_password = "sqladmin";
+$ref_database_name = "youtube_clone";
+$ref_server_name = "localhost";
 ?>
