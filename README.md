@@ -7,8 +7,6 @@ youtube
 <br>
 email service
 <br>
-maps
-<br>
 <br>
 Required tools and dependencies:
 <br>
@@ -21,9 +19,7 @@ Mysql -> using version 8.0.33
 ffmpeg -> using version 4.4.2
 <br>
 <br>
-Developed and tested on ubuntu 22.04, but Linux is not required.
-<br>
-Tools and dependencies are also available on windows.
+Developed and tested on ubuntu 22.04.
 <br>
 <br>
 to get started, run the sql code in the file "not_youtube_sql_setup.txt" to setup the database
