@@ -11,6 +11,9 @@
     <h2>This will be blank for now</h2>
     <a href="./main.php">test link</a>
     <?php
+        // setup session variable to enable login
+        session_start();
+        $_SESSION["logged_in"] = false;
         // temporarily redirect to youtube clone main page
         header("Location: ./main.php")
     ?>

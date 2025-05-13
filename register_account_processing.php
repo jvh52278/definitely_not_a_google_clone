@@ -1,4 +1,5 @@
 <?php
+session_start();
 # check if the username and password inputs are blank
 // ### link the database access functions
 include "./database_access_functions.php";

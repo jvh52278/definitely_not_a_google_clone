@@ -23,7 +23,7 @@
                 <!-- div containing the links -->
                 <div id="links_section">
                     <a href="./login.php">Login</a> <!-- login link -->
-                    <a href="">Manage account</a> <!-- link to user account page -->
+                    <a href="./manage_account.php">Manage account</a> <!-- link to user account page -->
                 </div>
             </div>
         </div>
@@ -33,6 +33,9 @@
             /*background-color: orange; /* set background color */
             display: flex; /* make the three sections of the header display side by side */
             border-style: solid;
+            border-top: none;
+            border-left: none;
+            border-right: none;
             border-color: var(--primary_border_color_1);
         }
         #left_section {
@@ -55,6 +58,7 @@
             font-size: 20px; /* increase the font size of the submit button to 20px */;
             background-color: var(--primary_element_background); /* set background color */
             border-color: var(--primary_border_color_1);
+            border-radius: 2px;
         }
         #middle_section #search_bar {
             margin: 10px; /* add 10px of space to the top, bottom, left and right of the search bar section */
@@ -73,6 +77,7 @@
             padding: 10px; /* add 10 px of visible space inwards to the top, bottom, left and right of each link */
             background-color: var(--primary_element_background); /* set background color */
             border-color: var(--primary_border_color_1);
+            border-radius: 2px;
         }
     </style>
 </html>

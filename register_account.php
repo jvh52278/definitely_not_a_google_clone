@@ -4,6 +4,7 @@
     include "./common_utility_functions.php";
     $display_username_error = check_and_replace_if_variable_is_empty($_POST["username_error"]);
     $dispay_password_error = check_and_replace_if_variable_is_empty($_POST["password_error"]);
+    session_start();
 ?>
 
 <!DOCTYPE html>

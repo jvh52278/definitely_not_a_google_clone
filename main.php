@@ -12,6 +12,7 @@
     <div id="main_content">
         <!-- common header section-->
         <?php 
+            session_start();
             // link the common header file
             include "./common_header.php";
         ?>

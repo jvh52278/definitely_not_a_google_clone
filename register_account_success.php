@@ -14,6 +14,7 @@
         <h2>you will be redirected back to the login page</h2>
     </div>
     <?php
+        session_start();
         header("refresh:2;url=./login.php");
     ?>
 </body>
