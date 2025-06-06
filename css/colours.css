@@ -9,7 +9,33 @@
     --primary_border_color_2: black;
 }
 
+p {
+    font-family: Sans-Serif;
+}
 
+h1 {
+    font-family: Sans-Serif;
+}
+
+h2 {
+    font-family: Sans-Serif;
+}
+
+h3 {
+    font-family: Sans-Serif;
+}
+
+a {
+    font-family: Sans-Serif;
+}
+
+label {
+    font-family: Sans-Serif;
+}
+
+input {
+    font-family: Sans-Serif;
+}
 
 /*
 --primary_page_background

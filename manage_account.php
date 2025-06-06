@@ -27,7 +27,7 @@
         }
         ?>
         <div class="center_container"><a href="./main.php">Return to homepage</a></div>
-        <div class="center_container"><a href="">Logout</a></div>
+        <div class="center_container"><a href="./logout_processing.php">Logout</a></div>
         <!-- 
         to do:
         change password function - use $_SESSION["logged_in_user"] to change the user password

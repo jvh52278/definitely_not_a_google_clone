@@ -1,0 +1,70 @@
+/* for each pair of input and label*/
+.input_combo {
+    text-align: center; /* center horizontally*/
+}
+/* for each label within each label-input pair*/
+.input_combo > label {
+    width: 120px; /* set the width to 120px */
+    font-size: 20px; /* set the font size to 20px */
+    margin: 10px; /* add 15px to all sides */
+    display: inline-block; /* set display mode to inline-block, so that more css properties can be applied */
+    font-weight: bold; /* make the font bold */
+    color: var(--primary_border_color_1);
+}
+/* for each input of within each label-input pair */
+.input_combo > input {
+    font-size: 20px; /* set font size to 20px */
+    width: 50%; /* set width to 50% of available width */
+}
+/* for each error message within each label-input pair - this is a p tag */
+.input_combo > p {
+    font-size: 20px; /* make the font size 20px */
+    color: red; /* make the color red */
+    width: 65%; /* make the width 65% of available width*/
+    margin-left: auto; /* center horizontally */
+    margin-right: auto; /* center horizontally */
+}
+
+/* ----------------- */
+
+/* for the form submit button */
+.form_submit_button {
+    display: block; /* set display mode to block */
+    margin-left: auto; /* center horizontally */
+    margin-right: auto; /* center horizontally */
+    margin-top: 10px; /* add 10px to the top */
+    margin-bottom: 10px; /* add 10px to the bottom */
+    font-size: 20px; /* increase font to 20px */
+    border: none; /* remove the border */
+    background-color: var(--primary_element_background); /* make the background orange*/
+    color: var(--primary_text_color_2);
+    font-weight: bold; /* make the font bold */
+    padding: 10px; /* add 10px of visible space on all sides*/
+}
+/* when the mouse cursor hovers over the submit button*/
+.login_submit:hover { 
+    cursor: pointer; /* change the cursor to a hand/select symbol */
+    background-color: var(--element_hover_background_color); /* change the background color to dark blue */
+    color: var(--element_hover_text_color); /* change the text color to white */
+}
+
+/* ------------------------ */
+
+/* for any links */
+
+.link_element {
+    display: block;
+    background-color: var(--primary_element_background);
+    color: var(--primary_text_color_2);
+    padding: 5px;
+    font-size: 15px;
+    margin: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+}
+
+.link_element:hover {
+    background-color: var(--element_hover_background_color);
+    color: var(--element_hover_text_color);
+}

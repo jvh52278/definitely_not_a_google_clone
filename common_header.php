@@ -7,7 +7,7 @@
                 <!-- link to the main page -->
                 <a href="./main.php">
                     <!-- make an image the link instead of a text link -->
-                    <img src="./images/not_youtube_logo.png" alt="logo" height="60px" width="150px">
+                    <img src="./images/not_youtube_logo.png" alt="logo">
                 </a>
             </div>
             <!-- search bar section -> middle section -->
@@ -22,8 +22,19 @@
             <div id="right_section">
                 <!-- div containing the links -->
                 <div id="links_section">
-                    <a href="./login.php">Login</a> <!-- login link -->
-                    <a href="./manage_account.php">Manage account</a> <!-- link to user account page -->
+                    <!--
+                    <a href="./login.php">Login</a>
+                    <a href="./manage_account.php">Manage account</a>
+                    -->
+                    <?php
+                        // if the user is not logged in, display the login button
+                        if ($_SESSION["logged_in"] != true) {
+                            echo '<a href="./login.php">Login</a>';
+                        } else {
+                            // otherwise, show the link to the manage account page
+                            echo '<a href="./manage_account.php">Manage account</a>';
+                        }
+                    ?>
                 </div>
             </div>
         </div>
@@ -36,6 +47,7 @@
             border-top: none;
             border-left: none;
             border-right: none;
+            border-width: 5px;
             border-color: var(--primary_border_color_1);
         }
         #left_section {
@@ -43,6 +55,24 @@
             background-color: var(--primary_element_background); /* set background color */
             border-style: solid;
             border-color: var(--primary_border_color_1);
+        }
+        #left_section a {
+            display: block;
+            margin-top: auto;
+            margin-bottom: auto;
+            /*
+            object-fit: contain;
+            width: 50%;
+            height: 50%;
+            */
+        }
+        #left_section a img {
+            display: block;
+            margin-top: auto;
+            margin-bottom: auto;
+            width: 20%;
+            height: 100%;
+            object-fit: contain;
         }
         #middle_section {
             flex: 1; /* make the middle section take up 1/3 of the width of the common header */
@@ -59,6 +89,7 @@
             background-color: var(--primary_element_background); /* set background color */
             border-color: var(--primary_border_color_1);
             border-radius: 2px;
+            border-style: solid;
         }
         #middle_section #search_bar {
             margin: 10px; /* add 10px of space to the top, bottom, left and right of the search bar section */

@@ -24,3 +24,12 @@ path_to_thumbnail varchar(500) NOT NULL,
 upload_approved_y_n varchar(500) NOT NULL,
 PRIMARY KEY (video_id)
 );
+CREATE TABLE comments (
+comment_id varchar(500) NOT NULL,
+associated_video_id varchar(500) NOT NULL,
+commenter_user_id varchar(500) NOT NULL,
+commenter_username varchar(500) NOT NULL,
+comment_text varchar(5000) NOT NULL,
+posted_date int NOT NULL,
+PRIMARY KEY (comment_id)
+);
