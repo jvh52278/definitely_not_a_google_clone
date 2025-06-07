@@ -5,25 +5,33 @@
 /* for each label within each label-input pair*/
 .input_combo > label {
     width: 120px; /* set the width to 120px */
-    font-size: 20px; /* set the font size to 20px */
-    margin: 10px; /* add 15px to all sides */
+    font-size: 15px;
+    margin: 10px;
     display: inline-block; /* set display mode to inline-block, so that more css properties can be applied */
     font-weight: bold; /* make the font bold */
     color: var(--primary_border_color_1);
+    text-align: left;
 }
 /* for each input of within each label-input pair */
 .input_combo > input {
-    font-size: 20px; /* set font size to 20px */
-    width: 50%; /* set width to 50% of available width */
+    font-size: 15px;
+    width: 40%;
 }
 /* for each error message within each label-input pair - this is a p tag */
 .input_combo > p {
-    font-size: 20px; /* make the font size 20px */
+    font-size: 15px;
     color: red; /* make the color red */
     width: 65%; /* make the width 65% of available width*/
     margin-left: auto; /* center horizontally */
     margin-right: auto; /* center horizontally */
 }
+/*
+<div class="input_combo">
+    <label for="input_name">label_display_text</label>
+    <input type="text" name="input_name" id="input_name">
+    <p></p>
+</div>
+*/
 
 /* ----------------- */
 
@@ -34,7 +42,7 @@
     margin-right: auto; /* center horizontally */
     margin-top: 10px; /* add 10px to the top */
     margin-bottom: 10px; /* add 10px to the bottom */
-    font-size: 20px; /* increase font to 20px */
+    font-size: 15px;
     border: none; /* remove the border */
     background-color: var(--primary_element_background); /* make the background orange*/
     color: var(--primary_text_color_2);
@@ -42,15 +50,16 @@
     padding: 10px; /* add 10px of visible space on all sides*/
 }
 /* when the mouse cursor hovers over the submit button*/
-.login_submit:hover { 
+.form_submit_button:hover { 
     cursor: pointer; /* change the cursor to a hand/select symbol */
     background-color: var(--element_hover_background_color); /* change the background color to dark blue */
     color: var(--element_hover_text_color); /* change the text color to white */
 }
 
+/* <input class="form_submit_button" type="submit" value="display_text"> */
 /* ------------------------ */
 
-/* for any links */
+/* for any page links */
 
 .link_element {
     display: block;
@@ -58,13 +67,36 @@
     color: var(--primary_text_color_2);
     padding: 5px;
     font-size: 15px;
-    margin: 5px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
     text-decoration: none;
     font-weight: bold;
     text-align: center;
+    width: 25%;
 }
 
 .link_element:hover {
     background-color: var(--element_hover_background_color);
     color: var(--element_hover_text_color);
+}
+
+/* for any page contents divs that are not primarily userforms - ie, not login pages */
+.page_content_container {
+    background-color: var(--primary_page_background); /* set color */
+    border-style: solid; /* create a solid line border */
+    border-color: var(--primary_border_color_1);
+    border-width: 1px; /* set the width of the border to 1px */
+    width: 75%; /* set the width to 50% of the total page width */
+    margin-left: auto; /* center horizontally */
+    margin-right: auto; /* center horizontally */
+    margin-top: 10px; /* add 10px of space to the top */
+    margin-bottom: 10px; /* add 10px of space to the bottom */
+}
+
+/* for any h1 primary page headers */
+.primary_page_title {
+    color: var(--primary_border_color_1);
+    text-align: center;
 }

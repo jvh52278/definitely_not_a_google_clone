@@ -17,7 +17,7 @@
 <body>
     <div id="page_contents">
         <h1 id="section_title">Manage Account</h1>
-        <div class="center_container"><a href="">Change Password</a></div>
+        <div class="center_container"><a href="./change_password.php">Change Password</a></div>
         <div class="center_container"><a href="">Upload Video</a></div>
         <div class="center_container"><a href="">Manage uploads</a></div>
         <!-- show the approve link if the user is admin -->
