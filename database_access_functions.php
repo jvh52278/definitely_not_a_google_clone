@@ -251,13 +251,13 @@ class database_access_object {
     
 }
 // ############# create the instance of class here - so that database access information can easily be changed for other deployments #########
-// create an instance of the class
-$database_access_object = new database_access_object();
-// ## set database access info - change this to reflect your own database user, database name and server name
-$database_access_object->set_database_access_variables("sqladmin","sqladmin","youtube_clone","localhost");
 // set variables for other prepared statements outside of these functions - change these to reflect your own database
 $ref_database_username = "sqladmin";
 $ref_database_user_password = "sqladmin";
 $ref_database_name = "youtube_clone";
 $ref_server_name = "localhost";
+// create an instance of the class
+$database_access_object = new database_access_object();
+// ## set database access info - change this to reflect your own database user, database name and server name
+$database_access_object->set_database_access_variables($ref_database_username,$ref_database_user_password,$ref_database_name,$ref_server_name);
 ?>

@@ -87,6 +87,8 @@
     background-color: var(--primary_page_background); /* set color */
     border-style: solid; /* create a solid line border */
     border-color: var(--primary_border_color_1);
+    border-bottom: none;
+    border-top: none;
     border-width: 1px; /* set the width of the border to 1px */
     width: 75%; /* set the width to 50% of the total page width */
     margin-left: auto; /* center horizontally */
@@ -95,7 +97,7 @@
     margin-bottom: 10px; /* add 10px of space to the bottom */
 }
 
-/* for any h1 primary page headers */
+/* for any h1 or h2 primary page headers */
 .primary_page_title {
     color: var(--primary_border_color_1);
     text-align: center;

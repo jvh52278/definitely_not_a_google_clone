@@ -33,3 +33,17 @@ comment_text varchar(5000) NOT NULL,
 posted_date int NOT NULL,
 PRIMARY KEY (comment_id)
 );
+INSERT INTO users
+(
+user_id, 
+user_name, 
+password,
+is_admin_y_n
+)
+VALUES 
+(
+"ad1", 
+"admin", 
+SHA2("admin", 256),
+"y"
+);
