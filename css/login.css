@@ -89,3 +89,36 @@ body {
     background-color: var(--element_hover_background_color); /* change the background color to dark blue */
     color: var(--element_hover_text_color); /* change the text color to white */
 }
+
+/* media query for responsive display */
+@media screen and (max-width: 1300px) {
+    #page_contents {
+        width: 70%;
+    }
+    .link_section a {
+        font-size: 15px;
+    }
+    .link_section {
+        width: 30%;
+    }
+    .input_combo > p {
+        font-size: 15px;
+    }
+    .input_combo > label {
+        font-size: 15px;
+    }
+    .input_combo > input {
+        font-size: 15px;
+    }
+    #login_submit {
+        font-size: 15px;
+        width: 30%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+@media screen and (max-width: 900px) {
+        #page_contents {
+        width: 90%;
+    }
+}

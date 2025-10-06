@@ -7,6 +7,7 @@
     --element_hover_text_color: white;
     --primary_border_color_1: darkorange;
     --primary_border_color_2: black;
+    --secondary_matching_color: rgb(88, 86, 86);
 }
 /*
 --primary_page_background
@@ -17,6 +18,7 @@
 --element_hover_text_color
 --primary_border_color_1
 --primary_border_color_2
+--secondary_matching_color
 */
 
 p {

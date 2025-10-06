@@ -102,3 +102,22 @@
     color: var(--primary_border_color_1);
     text-align: center;
 }
+
+/* media query for responsive display*/
+@media screen and (max-width: 1300px) {
+    .page_content_container {
+        width: 80%;
+    }
+    .input_combo > input {
+        width: 60%;
+    }
+    .link_element {
+        width: 35%;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .page_content_container {
+        width: 85%;
+    }
+}

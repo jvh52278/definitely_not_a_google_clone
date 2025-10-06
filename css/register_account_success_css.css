@@ -22,3 +22,9 @@ body {
     text-align: center; /* center horizontally */
     color: var(--primary_text_color_2);
 }
+
+@media screen and (max-width: 1300px) {
+    #message_contents {
+        width: 90%;
+    }
+}

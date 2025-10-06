@@ -41,3 +41,9 @@ body {
     text-align: center;
     color: var(--primary_text_color_1);
 }
+
+@media screen and (max-width: 1300px) {
+    .center_container {
+        width: 60%;
+    }
+}

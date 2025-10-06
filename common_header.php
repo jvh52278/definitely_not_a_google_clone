@@ -7,7 +7,7 @@
                 <!-- link to the main page -->
                 <a href="./main.php">
                     <!-- make an image the link instead of a text link -->
-                    <img src="./images/not_youtube_logo.png" alt="logo">
+                    <img src="./images/yewhub.png" alt="logo">
                 </a>
             </div>
             <!-- search bar section -> middle section -->
@@ -48,13 +48,13 @@
             border-left: none;
             border-right: none;
             border-width: 5px;
-            border-color: var(--primary_border_color_1);
+            border-color: var(--secondary_matching_color);
         }
         #left_section {
             flex: 1; /* make the left section take up 1/3 of the width of the common header */
-            background-color: var(--primary_element_background); /* set background color */
+            background-color: var(--secondary_matching_color); /* set background color */
             border-style: solid;
-            border-color: var(--primary_border_color_1);
+            border-color: var(--secondary_matching_color);
         }
         #left_section a {
             display: block;
@@ -110,5 +110,42 @@
             border-color: var(--primary_border_color_1);
             border-radius: 2px;
         }
+    
+    /* media query for responsive display */
+    @media screen and (max-width: 1100px) {
+        #common_header {
+            display: block;
+        }
+        #left_section a img {
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #middle_section #search_bar {
+            display: block;
+            text-align: center;
+        }
+        #common_header {
+            border: none;
+        }
+        #right_section #links_section {
+            float: none;
+            display: block;
+            text-align: center;
+        }
+        #right_section #links_section a {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 15px;
+            width: 200px;
+        }
+        #right_section {
+            border: solid;
+            border-color: var(--secondary_matching_color);
+            border-top: none;
+            border-left: none;
+            border-right: none;
+        }
+    }
     </style>
 </html>
