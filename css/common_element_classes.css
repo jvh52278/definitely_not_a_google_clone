@@ -11,11 +11,17 @@
     font-weight: bold; /* make the font bold */
     color: var(--primary_border_color_1);
     text-align: left;
+    /*vertical-align: top;*/
 }
 /* for each input of within each label-input pair */
 .input_combo > input {
     font-size: 15px;
     width: 40%;
+}
+/* if using a textarea input */
+.input_combo > textarea {
+    font-size: 15px;
+    width: 60%;
 }
 /* for each error message within each label-input pair - this is a p tag */
 .input_combo > p {
@@ -31,6 +37,9 @@
     <input type="text" name="input_name" id="input_name">
     <p></p>
 </div>
+
+if using text area - replace input with this
+<textarea id="input_name" name="input_name" rows="2" cols="10"></textarea>
 */
 
 /* ----------------- */
@@ -82,7 +91,7 @@
     color: var(--element_hover_text_color);
 }
 
-/* for any page contents divs that are not primarily userforms - ie, not login pages */
+/* for any page contents divs that are not primarily user forms - ie, not login pages */
 .page_content_container {
     background-color: var(--primary_page_background); /* set color */
     border-style: solid; /* create a solid line border */
@@ -111,6 +120,9 @@
     .input_combo > input {
         width: 60%;
     }
+    .input_combo > textarea {
+        width: 75%;
+    }
     .link_element {
         width: 35%;
     }
@@ -119,5 +131,8 @@
 @media screen and (max-width: 900px) {
     .page_content_container {
         width: 85%;
+    }
+    .input_combo > label {
+        text-align: center;
     }
 }

@@ -23,7 +23,7 @@
         <h1 id="section_title">Manage Account</h1>
         <h2 class="primary_page_title">Welcome <?php echo $user_info_retrieval[0]["user_name"]; ?></h2>
         <div class="center_container"><a href="./change_password.php">Change Password</a></div>
-        <div class="center_container"><a href="">Upload Video</a></div>
+        <div class="center_container"><a href="./upload_video.php">Upload Video</a></div>
         <div class="center_container"><a href="">Manage uploads</a></div>
         <!-- show the approve link if the user is admin -->
         <?php
