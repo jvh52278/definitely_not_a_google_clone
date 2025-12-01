@@ -260,4 +260,23 @@ $ref_server_name = "localhost";
 $database_access_object = new database_access_object();
 // ## set database access info - change this to reflect your own database user, database name and server name
 $database_access_object->set_database_access_variables($ref_database_username,$ref_database_user_password,$ref_database_name,$ref_server_name);
+
+function generate_unique_value ($input_database_username, $input_database_user_password,$input_database_name,$input_server_name, $string_table_to_access, $string_collumn_to_access, $string_check_value_type_idsb) {
+    $database_access_object_f = new database_access_object();
+    $database_access_object_f->set_database_access_variables($input_database_username,$input_database_user_password,$input_database_name,$input_server_name);
+    $return_value = $database_access_object_f->create_random_string();
+    // check if the user id already exists
+    $return_value_is_unique = false;
+    while ($return_value_is_unique == false) {
+        $duplicate_exists = $database_access_object_f->check_if_value_exists($return_value, $string_check_value_type_idsb, $string_collumn_to_access, $string_table_to_access);
+        if ($duplicate_exists == false) {
+            $return_value_is_unique = true;
+        }
+        // if the user id already exists, generate a new one to be tested in the next loop iteration
+        if ($duplicate_exists == true) {
+            $return_value = $database_access_object_f->create_random_string();
+        }
+    }
+    return $return_value;
+}
 ?>
