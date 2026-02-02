@@ -23,7 +23,14 @@ $input_video_description = trim_spaces_from_string($_POST["video_description"]);
 <body>
     <h1 id="title_header">Your upload is being processed</h1>
     <img id="body_image" src="./images/please_accept_this_drawing_of_a_spider_as_payment.png" alt="a very old and very specific reference">
+    <!--<p style="color: white;"></p>-->
     <?php
+        $force_return_via_upload_limiter = false; // if true, and the upload limit has been reached, redirect back to upload page if randomly selected
+
+        $path_to_temporary_upload_file = $_FILES['upload_file']['tmp_name'];
+        $upload_file_extention = pathinfo($_FILES['upload_file']["name"],PATHINFO_EXTENSION);
+        $full_file_path_to_upload_files = $path_to_temporary_upload_file.".".$upload_file_extention;
+
         $form_inputs_are_valid = false;
         $preprocessing_checks_are_valid = false; // virus scanning, number of pre-existing uploads
         $primary_checks_are_valid = false ;// file size, video length, video format
@@ -37,13 +44,53 @@ $input_video_description = trim_spaces_from_string($_POST["video_description"]);
         if ($force_preprocessing_virus_scan == false && $force_upload_limiter == false) {
             $preprocessing_checks_are_valid = true;
         } else {
-            // -- virus scan
+            if ($force_preprocessing_virus_scan == true) {
+                if ($_FILES['upload_file']['error'] == 0) {
+                    $virus_scan_command = "clamscan -rz $path_to_temporary_upload_file | grep 'Infected files'";
+                    $virus_scan_good_return = false;
+                    $virus_scan_output = trim(shell_exec($virus_scan_command));
+                    $expected_virus_scan_results = "Infected files: 0";
+                    // -- virus scan
+                    if ($virus_scan_output == $expected_virus_scan_results) {
+                        $virus_scan_good_return = true;
+                    } else {
+                        $upload_error_status = 6;
+                    }
+                    if ($virus_scan_good_return == true) {
+                        $preprocessing_checks_are_valid = true;
+                    }
+                } else {
+                    $upload_error_status = 1;
+                }
+            }
             // -- user upload count
         }
         // check if form inputs are valid
         if ($preprocessing_checks_are_valid == true) {
             // -- check if the upload field is blank -> that a file was uploaded
             $upload_field_is_not_blank = false;
+            if ($_FILES['upload_file']['error'] == 0) {
+                $upload_field_is_not_blank = true;
+                // check if the uploaded file is a video
+                $verification_command_1 = "ffprobe -v error -select_streams v:0 -count_packets -show_entries stream=nb_read_packets -of csv=p=0 $path_to_temporary_upload_file";
+                $video_test_verification_output_1 = shell_exec($verification_command_1);
+                try {
+                    $test_output_1 = (int) $video_test_verification_output_1;
+                    if ($test_output_1 <= 0) {
+                        $upload_field_is_not_blank = false;
+                        $upload_error_status = 5;
+                    }
+                }
+                catch (Exception $e) {
+                    $upload_field_is_not_blank = false;
+                    $upload_error_status = 5;
+                }
+                //echo "<p style='color: white;'>$full_file_path_to_upload_files</p>";
+                //echo "<br>";
+                //echo "<p style='color: white;'>$video_test_verification_output_1</p>";
+            } else {
+                $upload_error_status = 1;
+            }
             // -- check if the title field is blank
             $title_is_not_blank = false;
             if (!empty($input_video_title)) {
@@ -70,6 +117,14 @@ $input_video_description = trim_spaces_from_string($_POST["video_description"]);
             $correct_video_length = false;
             // check video format
             $correct_video_format = false;
+            // input correction from global control variables
+            if ($force_efficient_file_size == false) {
+                $correct_video_length = true;
+                $correct_file_size = true;
+            }
+            if ($force_16_9_mp4_format == false) {
+                $correct_video_format = true;
+            }
             if ($correct_file_size == true && $correct_video_length == true && $correct_video_format == true) {
                 $primary_checks_are_valid = true;
             }
@@ -80,6 +135,7 @@ $input_video_description = trim_spaces_from_string($_POST["video_description"]);
         } else {
             // redirect back with errors
             header("Location: ./upload_video.php?top_message_code=$top_message_status&upload_message_code=$upload_error_status&title_message_code=$title_error_status&description_message_code=$description_error_status");
+            //header("refresh:7;url=./upload_video.php?top_message_code=$top_message_status&upload_message_code=$upload_error_status&title_message_code=$title_error_status&description_message_code=$description_error_status");
         }
     ?>
 </body>
