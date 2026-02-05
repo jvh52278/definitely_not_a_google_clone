@@ -43,4 +43,17 @@ function check_if_string_contains_substring ($string_to_check, $substring_to_loo
         return $substring_found;
     }
 }
+
+function print_debug_test_value ($value_to_print, $string_text_white_or_black) {
+    $text_color = "";
+    if ($string_text_white_or_black == "white") {
+        $text_color = "white";
+    } elseif ($string_text_white_or_black == "black") {
+        $text_color = "black";
+    } else {
+        $text_color = "yellow";
+    }
+    echo "<p style='color: $text_color;'>#### test values ###</p>";
+    echo "<p style='color: $text_color;'>$value_to_print</p>";
+}
 ?>

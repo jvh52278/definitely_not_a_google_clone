@@ -15,7 +15,7 @@ if ($upload_error_status == "2") {
     $upload_error = "The uploaded file must be smaller than 1.5GB";
 }
 if ($upload_error_status == "3") {
-    $upload_error = "The video length cannot exceed 1.5GB";
+    $upload_error = "The video length cannot exceed 15 minutes";
 }
 if ($upload_error_status == "4") {
     $upload_error = "The uploaded file must be in mp4 format, with an aspect ratio of 16:9 or 9:16";
@@ -25,6 +25,9 @@ if ($upload_error_status == "5") {
 }
 if ($upload_error_status == "6") {
     $upload_error = "Nice try. You can't get a virus past me.";
+}
+if ($upload_error_status == "7") {
+    $upload_error = "Server is busy. Please try again later.";
 }
 
 // set the title error message

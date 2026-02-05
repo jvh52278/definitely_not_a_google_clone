@@ -39,31 +39,55 @@ $input_video_description = trim_spaces_from_string($_POST["video_description"]);
         $upload_error_status = 0;
         $title_error_status = 0;
         $description_error_status = 0;
+
+        $video_file_size = "";
+        $video_length = "";
+        $video_aspect_ratio = "";
+
+        $cpu_usage_calulation = "bash ".$document_root."/"."these_files_should_be_hidden/cpu_usage_calculation.sh";
+        $current_cpu_usage = "";
+
+        $document_root = $_SERVER['DOCUMENT_ROOT'];
         
         // preprocessing checks
-        if ($force_preprocessing_virus_scan == false && $force_upload_limiter == false) {
-            $preprocessing_checks_are_valid = true;
+        $cpu_usage_does_not_exceed_maximum = false;
+        if ($force_cpu_usage_state == false) {
+            $cpu_usage_does_not_exceed_maximum = true;
         } else {
-            if ($force_preprocessing_virus_scan == true) {
-                if ($_FILES['upload_file']['error'] == 0) {
-                    $virus_scan_command = "clamscan -rz $path_to_temporary_upload_file | grep 'Infected files'";
-                    $virus_scan_good_return = false;
-                    $virus_scan_output = trim(shell_exec($virus_scan_command));
-                    $expected_virus_scan_results = "Infected files: 0";
-                    // -- virus scan
-                    if ($virus_scan_output == $expected_virus_scan_results) {
-                        $virus_scan_good_return = true;
-                    } else {
-                        $upload_error_status = 6;
-                    }
-                    if ($virus_scan_good_return == true) {
-                        $preprocessing_checks_are_valid = true;
-                    }
-                } else {
-                    $upload_error_status = 1;
-                }
+            // check cpu usage
+            $current_cpu_usage = shell_exec($cpu_usage_calulation);
+            $comparison_value = (float) $current_cpu_usage;
+            if ($comparison_value <= $enforced_cpu_use_limit) {
+                $cpu_usage_does_not_exceed_maximum = true;
+            } else {
+                $upload_error_status = 7;
             }
-            // -- user upload count
+        }
+        if ($cpu_usage_does_not_exceed_maximum = true) {
+            if ($force_preprocessing_virus_scan == false && $force_upload_limiter == false) {
+                $preprocessing_checks_are_valid = true;
+            } else {
+                if ($force_preprocessing_virus_scan == true) {
+                    if ($_FILES['upload_file']['error'] == 0) {
+                        $virus_scan_command = "clamscan -rz $path_to_temporary_upload_file | grep 'Infected files'";
+                        $virus_scan_good_return = false;
+                        $virus_scan_output = trim(shell_exec($virus_scan_command));
+                        $expected_virus_scan_results = "Infected files: 0";
+                        // -- virus scan
+                        if ($virus_scan_output == $expected_virus_scan_results) {
+                            $virus_scan_good_return = true;
+                        } else {
+                            $upload_error_status = 6;
+                        }
+                        if ($virus_scan_good_return == true) {
+                            $preprocessing_checks_are_valid = true;
+                        }
+                    } else {
+                        $upload_error_status = 1;
+                    }
+                }
+                // -- user upload count
+            }
         }
         // check if form inputs are valid
         if ($preprocessing_checks_are_valid == true) {
@@ -76,18 +100,23 @@ $input_video_description = trim_spaces_from_string($_POST["video_description"]);
                 $video_test_verification_output_1 = shell_exec($verification_command_1);
                 try {
                     $test_output_1 = (int) $video_test_verification_output_1;
-                    if ($test_output_1 <= 0) {
+                    if ($test_output_1 <= 2) {
                         $upload_field_is_not_blank = false;
                         $upload_error_status = 5;
+                    } else {
+                        $file_size_command = "ffprobe -i $path_to_temporary_upload_file -show_entries format=size -v quiet -of csv='p=0'";
+                        $video_file_size = shell_exec($file_size_command);
+                        $video_length_command = "ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 $path_to_temporary_upload_file";
+                        $video_length = shell_exec($video_length_command);
+                        $video_aspect_ratio_command = "ffprobe -v error -select_streams v:0 -show_entries stream=display_aspect_ratio -of csv=s=x:p=0 $path_to_temporary_upload_file";
+                        $video_aspect_ratio = shell_exec($video_aspect_ratio_command);
                     }
                 }
                 catch (Exception $e) {
                     $upload_field_is_not_blank = false;
                     $upload_error_status = 5;
                 }
-                //echo "<p style='color: white;'>$full_file_path_to_upload_files</p>";
-                //echo "<br>";
-                //echo "<p style='color: white;'>$video_test_verification_output_1</p>";
+                //print_debug_test_value($current_cpu_usage, "white");
             } else {
                 $upload_error_status = 1;
             }
@@ -121,6 +150,22 @@ $input_video_description = trim_spaces_from_string($_POST["video_description"]);
             if ($force_efficient_file_size == false) {
                 $correct_video_length = true;
                 $correct_file_size = true;
+            } else {
+                // if not overidden, check video file size and video length
+                $filesize_comparison_value = (float) $video_file_size;
+                $video_length_comparison_value = (float) $video_length;
+
+                if ($filesize_comparison_value <= $enforced_max_file_size) {
+                    $correct_file_size = true;
+                } else {
+                    $upload_error_status = 2;
+                }
+                if ($video_length_comparison_value <= $enforced_max_video_length) {
+                    $correct_video_length = true;
+                } else {
+                    $upload_error_status = 3;
+                }
+                //print_debug_test_value($upload_error_status, "white");
             }
             if ($force_16_9_mp4_format == false) {
                 $correct_video_format = true;
