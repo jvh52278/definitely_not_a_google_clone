@@ -20,8 +20,11 @@ description varchar(500) NOT NULL,
 uploader varchar(500) NOT NULL,
 upload_date int NOT NULL,
 path_to_video_file varchar(500) NOT NULL,
+path_to_video_file_alt varchar(500) NOT NULL,
 path_to_thumbnail varchar(500) NOT NULL,
 upload_approved_y_n varchar(500) NOT NULL,
+upvotes int NOT NULL,
+downvotes int NOT NULL,
 PRIMARY KEY (video_id)
 );
 CREATE TABLE comments (
@@ -32,6 +35,13 @@ commenter_username varchar(500) NOT NULL,
 comment_text varchar(5000) NOT NULL,
 posted_date int NOT NULL,
 PRIMARY KEY (comment_id)
+);
+CREATE TABLE generated_codes (
+code_id varchar(500) NOT NULL,
+associated_user_id varchar(500) NOT NULL,
+date_generated int NOT NULL,
+code_value varchar(5000) NOT NULL,
+PRIMARY KEY (code_id)
 );
 INSERT INTO users
 (

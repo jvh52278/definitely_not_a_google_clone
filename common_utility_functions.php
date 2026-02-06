@@ -56,4 +56,17 @@ function print_debug_test_value ($value_to_print, $string_text_white_or_black) {
     echo "<p style='color: $text_color;'>#### test values ###</p>";
     echo "<p style='color: $text_color;'>$value_to_print</p>";
 }
+
+function replace_spaces($string_input_string) {
+    $return_value = "";
+    for ($x = 0; $x < strlen($string_input_string); $x = $x + 1) {
+        $current_char = $string_input_string[$x];
+        if (!is_numeric($current_char) && !ctype_alpha($current_char)) {
+            $return_value = $return_value."_";
+        } else {
+            $return_value = $return_value.$current_char;
+        }
+    }
+    return $return_value;
+}
 ?>
