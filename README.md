@@ -9,16 +9,18 @@ youtube
 <br>
 Required tools and dependencies:
 <br>
-Apache -> using version 2.4.52
+Apache
 <br>
-PHP -> using version 8.1.2
+PHP
 <br>
-Mysql -> using version 8.0.33
+Mysql
 <br>
-ffmpeg -> using version 4.4.2
+ffmpeg
+<br>
+mpstat
 <br>
 <br>
-Developed and tested on ubuntu 22.04.
+Developed and tested on ubuntu 24.04.
 <br>
 <br>
 to get started, run the sql code in the file "not_youtube_sql_setup.txt" to setup the database
@@ -27,4 +29,4 @@ to get started, run the sql code in the file "not_youtube_sql_setup.txt" to setu
 In the file "database_access_functions.php", at the bottom of the file, change the database access information to reflect your own database and user
 <br>
 <br>
-There is also an admin user that will be created. It would be wise to change the password for this user.
+There is also an admin user that will be created. The password to this user is "admin". It would be wise to change the password for this user.
