@@ -13,7 +13,7 @@
             <!-- search bar section -> middle section -->
             <div id="middle_section">
                 <!-- form containing search bar -->
-                <form action="" id="search_bar" name="search_bar" method="get">
+                <form action="./search.php" id="search_bar" name="search_bar" method="get">
                     <input name="search_terms" id="search_terms" type="search"> <!--input for the search terms-->
                     <input name="search_bar_submit" id="search_bar_submit" type="submit" value="Search"> <!-- submit button for the search bar -->
                 </form>

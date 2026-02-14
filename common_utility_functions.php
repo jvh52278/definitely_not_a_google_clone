@@ -69,4 +69,22 @@ function replace_spaces($string_input_string) {
     }
     return $return_value;
 }
+
+function return_seperated_alnum_chars ($string_input_string) {
+    $return_array = array();
+    $temp_string = "";
+    for ($x = 0; $x < strlen($string_input_string); $x = $x + 1) {
+        $current_char = $string_input_string[$x];
+        if (ctype_alnum($current_char) || $current_char == "'") {
+            $temp_string = $temp_string.$current_char;
+        }
+        if ((!ctype_alnum($current_char) && $current_char != "'") || ($x == strlen($string_input_string) - 1)) {
+            if (!empty($temp_string)) {
+                array_push($return_array,$temp_string);
+                $temp_string = "";
+            }
+        }
+    }
+    return $return_array;
+}
 ?>
