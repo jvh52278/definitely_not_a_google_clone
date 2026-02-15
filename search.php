@@ -20,6 +20,11 @@ $override_default_start_values = true;
 $delete_option_active = false;
 $admin_moderation_mode_active = false;
 $custom_start_results = $database_access_object->prepared_statment_select_on_one_record("videos", "upload_approved_y_n", $approved_value, "s");
+//
+$last_page = $_GET["last_page_displayed"];
+if (empty($last_page)) {
+    $last_page = 0;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

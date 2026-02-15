@@ -144,11 +144,64 @@ try {
             }
         }
         // display the results in format according to mode
+        $results_displayed_running_count = 0;
+        $number_of_pages = attempt_division(count($final_display_items), 25);
+        $number_of_pages_practical_value = -5; // number_of_pages rounded up to the nearest whole number -> if sending back the last page and there are 2 or more pages, send this number back in the form
+        $results_per_page = 25;
+        $last_page_displayed = $last_page;
+        $display_start_point = 0; // start displaying results on and at this count
+        if ($number_of_pages > 1 && $last_page_displayed > 1) {
+            $previous_page = $last_page_displayed - 1;
+            $display_start_point = $previous_page*$results_per_page;
+        }
+        if ($last_page_displayed > $number_of_pages_practical_value || $last_page_displayed < 1 || $number_of_pages <= 1 || empty($last_page_displayed)) {
+            $display_start_point = 0;
+        }
+        // if the last page value is not a number, make it 0
+        // if the last page value is not a whole number, make it 0
+        //
+        $display_count_limit_at_last_page = $last_page_displayed*$results_per_page; // stop displaying results if this display count is reached, only if more than 1 page exists -> show this result, but not the next one
+        //- calculation of a partial page
+        /*
+        example:
+        2.3 pages = 3 pages
+        10 results per page
+        start at page 2 -> start on 20 results // already calculated
+
+        if last_page is greater than 1 && number_of_pages is 2 or greater && last_page is (number_of_pages - 1) 
+        end point = index_of_last_result_record
+        */
         if ($full_search_mode == true) {
             foreach ($final_display_items as $display_item) {
                 // get video info
                 $video_display_info = $database_access_object->prepared_statment_select_on_one_record("videos", "video_id", $display_item, "s");
-                
+                //
+                $uploader_id = $video_display_info[0]["uploader"];
+                $uploader_info = $database_access_object->prepared_statment_select_on_one_record("users", "user_id", $uploader_id, "s");
+                //
+                $link_video_id = $display_item;
+                $display_title = $video_display_info[0]["title"];
+                $display_description = $video_display_info[0]["description"];
+                $display_thumbnail = $video_display_info[0]["path_to_thumbnail"];
+                $display_uploader_username = $uploader_info[0]["user_name"];
+                $display_video_link = "";
+                if ($admin_moderation_view == true) {
+                    $display_video_link = "";
+                } else {
+                    $display_video_link = "video.php?video_id=$link_video_id"; // send input name: video_id
+                }
+
+                $display_container_standard = "<a style='color=white;' href='$display_video_link'>$display_title</a><br>"; //the html to display for each item without the delete option -> each item is a self contained div with class="full_display"
+                $display_container_with_delete = ""; // self contained div with delete option
+                $page_navigation_bar = ""; // to navigate between pages, only show if more than 1 page exists
+                if ($show_delete_option == true) {
+                    echo $display_container_with_delete;
+                } else {
+                    echo $display_container_standard;
+                }
+                if ($number_of_pages > 0) {
+                    echo $page_navigation_bar;
+                }
             }
         }
     }
