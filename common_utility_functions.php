@@ -87,4 +87,14 @@ function return_seperated_alnum_chars ($string_input_string) {
     }
     return $return_array;
 }
+
+function attempt_division ($float_number_1, $float_number_2) {
+    $return_value = 0;
+    if ($float_number_2 == 0) {
+        $return_value = 0;
+    } else {
+        $return_value = $float_number_1/$float_number_2;
+    }
+    return $return_value;
+}
 ?>

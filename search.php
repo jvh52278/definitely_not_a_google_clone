@@ -1,4 +1,11 @@
 <?php
+//
+/*
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+*/
+//
 session_start();
 include "./database_access_functions.php";
 include "./common_utility_functions.php";
@@ -10,6 +17,8 @@ $approved_value = "y";
 //
 $display_mode_input = "full";
 $override_default_start_values = true;
+$delete_option_active = false;
+$admin_moderation_mode_active = false;
 $custom_start_results = $database_access_object->prepared_statment_select_on_one_record("videos", "upload_approved_y_n", $approved_value, "s");
 ?>
 <!DOCTYPE html>
