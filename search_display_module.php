@@ -184,6 +184,8 @@ try {
                 $display_description = $video_display_info[0]["description"];
                 $display_thumbnail = $video_display_info[0]["path_to_thumbnail"];
                 $display_uploader_username = $uploader_info[0]["user_name"];
+                $display_upload_date = $video_display_info[0]["upload_date"];
+                $human_readable_date = date('m-d-Y H:i:s T', $display_upload_date);
                 $display_video_link = "";
                 if ($admin_moderation_view == true) {
                     $display_video_link = "";
@@ -191,7 +193,18 @@ try {
                     $display_video_link = "video.php?video_id=$link_video_id"; // send input name: video_id
                 }
 
-                $display_container_standard = "<a style='color=white;' href='$display_video_link'>$display_title</a><br>"; //the html to display for each item without the delete option -> each item is a self contained div with class="full_display"
+                $display_container_standard = 
+                "<div class='full_display'>
+                    <div class='full_display_section_image_small'>
+                        <a href='$display_video_link'><img src='$display_thumbnail' alt='$display_title'></a>
+                    </div>
+                    <div class='full_display_section'>
+                        <p><a class='list_view_link' href='$display_video_link'>$display_title</a></p>
+                    </div>
+                    <div class='full_display_section_word_wrapped'>
+                        <p>Uploaded by $display_uploader_username on $human_readable_date</p>
+                    </div>
+                </div>"; //the html to display for each item without the delete option -> each item is a self contained div with class="full_display"
                 $display_container_with_delete = ""; // self contained div with delete option
                 $page_navigation_bar = ""; // to navigate between pages, only show if more than 1 page exists
                 if ($show_delete_option == true) {

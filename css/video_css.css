@@ -2,6 +2,13 @@ body {
     background-color: var(--primary_page_background);
 }
 
+#header_section {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
 #video_section {
     display: block;
     width: 65%;
@@ -25,6 +32,12 @@ body {
     margin-left: auto;
     border-color: var(--primary_border_color_1);
     border-width: 2px;
+    overflow-wrap: break-word; /*word wraping*/
+    /*
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    */
 }
 
 #info_section iframe {

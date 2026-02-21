@@ -43,7 +43,7 @@
     <link rel="stylesheet" href="./css/common_element_classes.css">
 </head>
 <body>
-    <?php include("./common_header.php") ?>
+    <div id="header_section"><?php include("./common_header.php") ?></div>
     <video id="video_section" poster="<?php echo $thumbnail ?>" controls>
         <source src="<?php echo $video_file_original ?>">
         <source src="<?php echo $video_file_alt ?>">

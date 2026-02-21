@@ -8,6 +8,67 @@ body {
     margin-right: auto;
 }
 
+/* search results display properties */
+
+.full_display {
+    display: flex;
+    min-width: 0; /* add this to the flex container to make text truncation work */
+    border-style: none;
+    border-color: var(--secondary_matching_color);
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-width: 2px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.full_display_section_image_small {
+    flex: 1;
+    padding-left: 15px;
+    padding-right: 15px;
+    /*truncate text*/
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.full_display_section {
+    flex: 2;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-style: solid;
+    border-color: var(--secondary_matching_color);
+    border-width: 1px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    /*truncate text*/
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.list_view_link {
+    text-decoration: none;
+}
+
+.full_display_section_word_wrapped {
+    flex: 2;
+    padding-left: 15px;
+    padding-right: 15px;
+    word-wrap: break-word;
+}
+
+.full_display_section_image_small img {
+    width: 150px;
+    border-style: solid;
+    border-color: var(--secondary_matching_color);
+    border-width: 1px;
+}
+
+/* search results display properties */
+
 p {
     color: var(--primary_text_color_1);
 }

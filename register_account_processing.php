@@ -29,11 +29,11 @@ if (check_if_string_contains_substring($username_input,"admin") == false) {
 } else {
     $username_error = $username_error."Username cannot contain 'admin'<br>";
 }
-// # check if the username is not blank - this should not be the case
-if (!empty($username_input)) {
+// # check if the username is not blank and not more than 30 chars- this should not be the case
+if (!empty($username_input) && strlen($username_input) <= 30) {
     $username_is_not_empty =  true;
 } else {
-    $username_error = $username_error."This field cannot be blank<br>";
+    $username_error = $username_error."Username cannot be blank and must be 30 characters or less<br>";
 }
 // # if all username checks pass, set $username_is_valid to true
 if (($username_is_unique == true) && ($username_does_not_contain_admin == true) && ($username_is_not_empty == true))  {
