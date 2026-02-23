@@ -34,13 +34,13 @@ if ($upload_error_status == "7") {
 $title_error = "";
 $title_error_status = $_GET["title_message_code"]; // 0 = no errors, 1 = blank input error
 if ($title_error_status == "1") {
-    $title_error = "This field cannot be blank";
+    $title_error = "This field cannot be blank and must be 100 characters or less";
 }
 // set the description error message
 $description_error_status = $_GET["description_message_code"]; // 0 = no errors, 1 = blank input error
 $description_error = "";
 if ($description_error_status == "1") {
-    $description_error = "This field cannot be blank";
+    $description_error = "This field cannot be blank and must be 1000 characters or less";
 }
 
 

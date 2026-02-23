@@ -9,3 +9,27 @@ body {
     width: 90%;
     /*                        */
 }
+
+p {
+    color: var(--primary_text_color_1);
+}
+
+h1 {
+    color: var(--primary_text_color_1);
+}
+
+h2 {
+    color: var(--primary_text_color_1);
+}
+
+h3 {
+    color: var(--primary_text_color_1);
+}
+
+h4 {
+    color: var(--primary_text_color_1);
+}
+
+a {
+    color: var(--primary_text_color_1);
+}

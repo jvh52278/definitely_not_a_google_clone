@@ -131,14 +131,14 @@ $input_video_description = trim_spaces_from_string($_POST["video_description"]);
             }
             // -- check if the title field is blank
             $title_is_not_blank = false;
-            if (!empty($input_video_title)) {
+            if (!empty($input_video_title) && strlen($input_video_title) <= 100) {
                 $title_is_not_blank = true;
             } else {
                 $title_error_status = 1;
             }
             // -- check if the description field is blank
             $description_is_not_blank = false;
-            if (!empty($input_video_description)) {
+            if (!empty($input_video_description) && strlen($input_video_description) <= 1000) {
                 $description_is_not_blank = true;
             } else { 
                 $description_error_status = 1;

@@ -97,4 +97,30 @@ function attempt_division ($float_number_1, $float_number_2) {
     }
     return $return_value;
 }
+
+function check_if_number_string_is_int ($string_input_number_string) {
+    $return_value = false;
+    $number_of_valid_chars = 0;
+    for ($x = 0; $x < strlen($string_input_number_string); $x = $x + 1) {
+        $acceptable_chars = "1234567890";
+        $current_char = $string_input_number_string[$x];
+        $valid_char = false;
+        for ($y = 0; $y < strlen($acceptable_chars); $y = $y + 1) {
+            $check_char = $acceptable_chars[$y];
+            if ($check_char == $current_char) {
+                $valid_char =  true;
+            }
+        }
+        if ($valid_char == true) {
+            $number_of_valid_chars = $number_of_valid_chars + 1;
+        }
+    }
+    if ($number_of_valid_chars == strlen($string_input_number_string)) {
+        $return_value = true;
+    }
+    if (empty($string_input_number_string)) {
+        $return_value = false;
+    }
+    return $return_value;
+}
 ?>
