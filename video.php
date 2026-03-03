@@ -1,5 +1,12 @@
 <?php
     session_start();
+    // show errors
+    /*
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+    */
+    //
     include "./database_access_functions.php";
     include "./common_utility_functions.php";
     $user_info_retrieval = $database_access_object->prepared_statment_select_on_one_record("users", "user_id", $_SESSION["logged_in_user"], "s");
@@ -31,6 +38,22 @@
     // retrieve the username of the uploader
     $uploader_info = $database_access_object->prepared_statment_select_on_one_record("users", "user_id", $video_uploader_id, "s");
     $uploader_username = $uploader_info[0]["user_name"];
+    // recommendation bar settings
+    $display_mode_input = "short"; // "full", "all" or "short"
+    $override_default_start_values = true;
+    $delete_option_active = false;
+    $admin_moderation_mode_active = false;
+    $y_value = "y";
+    $custom_start_results = $database_access_object->prepared_statment_select_on_one_record("videos", "upload_approved_y_n", $y_value, "s"); // use if $override_default_start_values is true
+    $self_redirect_link = "video.php"; // the relative file path of the page
+    //
+    $last_page = $_GET["last_page_displayed"];// retrieve this form input for pagination view
+    if (empty($last_page)) {
+        $last_page = 0;
+    }
+    $search_input = check_and_replace_if_variable_is_empty(trim_spaces_from_string($video_title)); // retrieve this input for pagination view
+    $seperated_search_terms = return_seperated_alnum_chars($search_input);
+    $ignore_this = $video_id;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,6 +64,7 @@
     <link rel="stylesheet" href="./css/colours.css">
     <link rel="stylesheet" href="./css/video_css.css">
     <link rel="stylesheet" href="./css/common_element_classes.css">
+    <link rel="stylesheet" href="./css/short_display_css.css">
 </head>
 <body>
     <div id="header_section"><?php include("./common_header.php") ?></div>
@@ -55,7 +79,7 @@
         <p><?php echo $video_description ?></p>
     </div>
     <div id="recommendation_section">
-        <h1 style="background-color: black;">Recomendation section placeholder</h1>
+        <?php include("./search_display_module.php"); ?>
     </div>
     <div id="comments_section">
         <h1 style="background-color: black;">Comments section placeholder</h1>

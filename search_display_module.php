@@ -21,6 +21,8 @@ if (empty($last_page)) {
 }
 $search_input = check_and_replace_if_variable_is_empty(trim_spaces_from_string($_GET["search_terms"])); // retrieve this input for pagination view
 $seperated_search_terms = return_seperated_alnum_chars($search_input);
+// use this only if displaying in short mode
+$ignore_this = ""; // the id of the video to not display -> to avoid showing the currently displayed video
 */
 
 
@@ -305,6 +307,63 @@ try {
             }
             if ($number_of_pages > 1) {
                 echo $page_navigation_bar;
+            }
+        }
+        if ($display_3_relevant_short == true) {
+            $display_count = 0;
+            if (count($final_display_items) > 0) { 
+                echo "<div class='short_display'>";
+                foreach ($final_display_items as $display_item) {
+                    if ($display_item != $ignore_this) {
+                        $display_count = $display_count + 1;
+                    }
+                    if ($display_count > 0 && $display_count <= 3 && $display_item != $ignore_this) {
+                        // get video info
+                        $video_display_info = $database_access_object->prepared_statment_select_on_one_record("videos", "video_id", $display_item, "s");
+                        //
+                        $uploader_id = $video_display_info[0]["uploader"];
+                        $uploader_info = $database_access_object->prepared_statment_select_on_one_record("users", "user_id", $uploader_id, "s");
+                        //
+                        $link_video_id = $display_item;
+                        $display_title = $video_display_info[0]["title"];
+                        $display_description = $video_display_info[0]["description"];
+                        $display_thumbnail = $video_display_info[0]["path_to_thumbnail"];
+                        $display_uploader_username = $uploader_info[0]["user_name"];
+                        $display_upload_date = $video_display_info[0]["upload_date"];
+                        $human_readable_date = date('m-d-Y H:i:s T', $display_upload_date);
+                        $display_video_link = "video.php?video_id=$link_video_id";
+                        //
+                        $link_container = 
+                        "
+                        <div class='short_display_section'>
+                            <a href='$display_video_link'>
+                                <p class='sd_small_text'>$display_title</p>
+                                <img class='sd_image' src='$display_thumbnail' alt='$display_title'>
+                            </a>
+                        </div>
+                        ";
+                        echo $link_container;
+                    }
+                }
+                // fill blank spaces in recommendation section
+                $missing_display_elements = -5;
+                if ($display_count >= 1 && $display_count < 3) {
+                    $missing_display_elements = 3 - $display_count;
+                }
+                if ($missing_display_elements > -5) {
+                    for ($x = 1; $x <= $missing_display_elements; $x = $x + 1) {
+                        $placeholder_image = "images/black_space.png";
+                        $placeholder_section =
+                        "
+                        <div class='short_display_placeholder'>
+                            <p style='color:var(--primary_page_background);' class='sd_small_text_hidden'>blank</p>
+                            <img class='sd_image_hidden' src='$placeholder_image' alt='blank'>
+                        </div>
+                        ";
+                        echo $placeholder_section;
+                    }
+                }
+                echo "</div>";
             }
         }
     }

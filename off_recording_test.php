@@ -6,6 +6,7 @@
     <title>home page</title>
 </head>
 <body>
+    <a href=""></a>
     <?php
     class database_access_class {
         // set private variables for database access information
