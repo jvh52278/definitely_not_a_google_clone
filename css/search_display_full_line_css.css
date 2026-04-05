@@ -104,6 +104,16 @@
     text-align: center;
 }
 
+.line_display_link {
+    display: block;
+    color: var(--primary_text_color_1);
+    text-align: center;
+    text-decoration: none;
+    background-color: var(--secondary_matching_color);
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
 @media (max-width: 1280px) {
     .full_display {
         display: block;

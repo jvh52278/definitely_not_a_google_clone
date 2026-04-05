@@ -294,7 +294,18 @@ try {
                                 <p>Uploaded by $display_uploader_username on $human_readable_date</p>
                             </div>
                         </div>"; //the html to display for each item without the delete option -> each item is a self contained div with class="full_display"
-                        $display_container_with_delete = ""; // self contained div with delete option
+                        $display_container_with_delete =                         "<div class='full_display'>
+                            <div class='full_display_section_image_small'>
+                                <a href='$display_video_link'><img src='$display_thumbnail' alt='$display_title'></a>
+                            </div>
+                            <div class='full_display_section'>
+                                <p><a class='list_view_link' href='$display_video_link'>$display_title</a></p>
+                            </div>
+                            <div class='full_display_section_word_wrapped'>
+                                <p>Uploaded by $display_uploader_username on $human_readable_date</p>
+                                <a class='line_display_link' href='delete_processing.php?v=$link_video_id'>|-- Delete --|</a>
+                            </div>
+                        </div>";
                         if ($show_delete_option == true) {
                             echo $display_container_with_delete;
                         } else {

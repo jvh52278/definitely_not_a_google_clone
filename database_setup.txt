@@ -23,8 +23,8 @@ path_to_video_file varchar(500) NOT NULL,
 path_to_video_file_alt varchar(500) NOT NULL,
 path_to_thumbnail varchar(500) NOT NULL,
 upload_approved_y_n varchar(500) NOT NULL,
-upvotes int NOT NULL,
-downvotes int NOT NULL,
+upvotes bigint NOT NULL,
+downvotes bigint NOT NULL,
 PRIMARY KEY (video_id)
 );
 CREATE TABLE comments (
@@ -55,5 +55,19 @@ VALUES
 "ad1", 
 "admin", 
 SHA2("admin", 256),
+"y"
+);
+INSERT INTO users
+(
+user_id, 
+user_name, 
+password,
+is_admin_y_n
+)
+VALUES 
+(
+"an1", 
+"[Object object]", 
+SHA2("change_this_password_to_something_impossible_to_guess", 256),
 "y"
 );

@@ -17,13 +17,15 @@ Mysql
 <br>
 ffmpeg
 <br>
+clamav
+<br>
 mpstat
 <br>
 <br>
 Developed and tested on ubuntu 24.04.
 <br>
 <br>
-to get started, run the sql code in the file "not_youtube_sql_setup.txt" to setup the database
+to get started, run the sql code in the file "database_setup.txt" to setup the database
 <br>
 <br>
 In the file "database_access_functions.php", at the bottom of the file, change the database access information to reflect your own database and user

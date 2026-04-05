@@ -32,7 +32,11 @@
     $thumbnail = $video_info[0]["path_to_thumbnail"]; // path_to_thumbnail
     $upload_approved = $video_info[0]["upload_approved_y_n"]; // upload_approved_y_n
     // if the video is not approved, redirect away
-    if ($upload_approved != "y" && count($video_info) == 1) {
+    $video_display_approved = false;
+    if ($upload_approved == "y" || $upload_approved == "p") {
+        $video_display_approved = true;
+    }
+    if ($video_display_approved == false && count($video_info) == 1) {
         header("Location: ./no_access.php");
     }
     // retrieve the username of the uploader
