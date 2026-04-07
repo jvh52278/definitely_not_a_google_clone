@@ -205,7 +205,7 @@ class database_access_object {
         //$current_date_time = strtotime($current_date_time);
         $current_date_time = round(microtime(true),3)*1000;
         // create a random 10 char string
-        $possible_chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!_-+=";
+        $possible_chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
         $random_string = "";
         for ($x = 0; $x <= 10; $x = $x + 1) {
             $random_index = rand(0,strlen($possible_chars) - 1);

@@ -56,3 +56,7 @@ a {
 .empty_message {
     text-align: center;
 }
+
+#status_message {
+    text-align: center;
+}

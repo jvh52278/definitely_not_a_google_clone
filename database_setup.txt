@@ -69,5 +69,5 @@ VALUES
 "an1", 
 "[Object object]", 
 SHA2("change_this_password_to_something_impossible_to_guess", 256),
-"y"
+"n"
 );

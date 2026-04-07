@@ -6,10 +6,27 @@
     }
     include "./database_access_functions.php";
     include "./common_utility_functions.php";
+
+    $top_message_code = $_GET["tmc"];
+    $top_message = "";
+    if ($top_message_code == "1") {
+        $top_message = "MSG-IO_ERR_1: Something happened, but don't worry about it";
+    }
+    if ($top_message_code == "2") {
+        $top_message = "MSG-IO_DB_ERR_1: Something happened, but don't worry about it";
+    }
+    if ($top_message_code == "3") {
+        $top_message = "MSG-DB_ERR_1: Something happened, but don't worry about it";
+    }
+    if ($top_message_code == "4") {
+        $top_message = "Operation completed: video has been deleted";
+    }
+
     $user_info_retrieval = $database_access_object->prepared_statment_select_on_one_record("users", "user_id", $_SESSION["logged_in_user"], "s");
     $display_mode_input = "all"; // "full", "all" or "short"
     $override_default_start_values = true;
     $delete_option_active = true;
+    $delete_button_user_in_moderation_view = false;
     $admin_moderation_mode_active = false;
     $custom_start_results = $database_access_object->prepared_statment_select_on_one_record("videos", "uploader", $_SESSION["logged_in_user"], "s"); // use if $override_default_start_values is true
     $self_redirect_link = "manage_uploads.php"; // the relative file path of the page
@@ -36,6 +53,7 @@
 </head>
 <body>
     <h1 style="text-align: center;">Manage uploads</h1>
+    <p id="status_message"><?php echo $top_message ?></p>
     <h2 class="center_element"><a href="./manage_account.php">Back</a></h2>
     <div id="display_section">
         <br>

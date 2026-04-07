@@ -11,6 +11,7 @@ put this on every page that uses this module, change as needed
 $display_mode_input = "full"; // "full", "all" or "short"
 $override_default_start_values = false;
 $delete_option_active = false;
+$delete_button_user_in_moderation_view = false;
 $admin_moderation_mode_active = false;
 $custom_start_results = array(); // use if $override_default_start_values is true
 $self_redirect_link = ""; // the relative file path of the page
@@ -24,6 +25,12 @@ $seperated_search_terms = return_seperated_alnum_chars($search_input);
 // use this only if displaying in short mode
 $ignore_this = ""; // the id of the video to not display -> to avoid showing the currently displayed video
 */
+
+$link_back_to_user_manage_page = false;
+
+if (!empty($delete_button_user_in_moderation_view) && $delete_button_user_in_moderation_view == true) {
+    $link_back_to_user_manage_page = true;
+}
 
 
 $display_mode = $display_mode_input;
@@ -209,6 +216,7 @@ try {
         }
         $next_button_value = "";
         $back_button_value = "";
+        $last_page_standalone_value = "";
         // if there is more than 1 page
         if ($number_of_pages > 1) {
             // if starting from the first display entry
@@ -228,6 +236,7 @@ try {
             if ($last_page_displayed > 1) {
                 $last_page_number = $last_page_displayed - 1;
                 $p_insert_value = urlencode(strval($last_page_number));
+                $last_page_standalone_value = urlencode(strval($last_page_displayed));
                 $p_search_value = urlencode($search_input);
                 $back_link = $self_redirect_link."?search_terms=".$p_search_value."&last_page_displayed=".$p_insert_value;
                 $back_button_value = "<p class='center_link'><a href=$back_link>back</a></p>";
@@ -303,7 +312,7 @@ try {
                             </div>
                             <div class='full_display_section_word_wrapped'>
                                 <p>Uploaded by $display_uploader_username on $human_readable_date</p>
-                                <a class='line_display_link' href='delete_processing.php?v=$link_video_id'>|-- Delete --|</a>
+                                <a class='line_display_link' href='delete_processing.php?v=$link_video_id&last_page_displayed=$last_page_standalone_value&rd=m'>|-- Delete --|</a>
                             </div>
                         </div>";
                         if ($show_delete_option == true) {

@@ -12,4 +12,6 @@
     $enforced_video_aspect_ratio_alt = "9:16";
     $enforced_video_file_ext = "MPEG-4";
     $enforced_cpu_use_limit = 70.0;
+
+    $default_redirect_location = "main.php";
 ?>
