@@ -286,7 +286,7 @@ try {
                         $human_readable_date = date('m-d-Y H:i:s T', $display_upload_date);
                         $display_video_link = "";
                         if ($admin_moderation_view == true) {
-                            $display_video_link = "";
+                            $display_video_link = "review_user_upload.php?video_id=$link_video_id&last_page_displayed=$last_page_standalone_value";
                         } else {
                             $display_video_link = "video.php?video_id=$link_video_id"; // send input name: video_id
                         }
@@ -315,10 +315,26 @@ try {
                                 <a class='line_display_link' href='delete_processing.php?v=$link_video_id&last_page_displayed=$last_page_standalone_value&rd=m'>|-- Delete --|</a>
                             </div>
                         </div>";
-                        if ($show_delete_option == true) {
+                        $display_container_moderation_mode =                         "<div class='full_display'>
+                            <div class='full_display_section_image_small'>
+                                <a href='$display_video_link'><img src='$display_thumbnail' alt='$display_title'></a>
+                            </div>
+                            <div class='full_display_section'>
+                                <p><a class='list_view_link' href='$display_video_link'>$display_title</a></p>
+                            </div>
+                            <div class='full_display_section_word_wrapped'>
+                                <p>Uploaded by $display_uploader_username on $human_readable_date</p>
+                                <a class='line_display_link' href='delete_processing.php?v=$link_video_id&last_page_displayed=$last_page_standalone_value&rd=a'>|-- Delete --|</a>
+                            </div>
+                        </div>";
+                        if ($show_delete_option == true && $admin_moderation_mode_active != true) {
                             echo $display_container_with_delete;
                         } else {
-                            echo $display_container_standard;
+                            if ($admin_moderation_mode_active == true) {
+                                echo $display_container_moderation_mode;
+                            } else {
+                                echo $display_container_standard;
+                            }
                         }
                     }
                 }

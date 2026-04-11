@@ -1,8 +1,10 @@
 <?php
     //
+    /*
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
+    */
     //
     session_start();
     // if a user is not logged in, redirect back to login page
@@ -108,6 +110,8 @@
                 $return_link = $back_redirect_link."?last_page_displayed=".$last_page_send_back."&tmc=".$message_code;
                 $complete_return_code = "Location: ".$return_link;
                 header($complete_return_code);
+            } else {
+                header("Location: ./main.php");
             }
         } else {
             $return_link = $back_redirect_link."?last_page_displayed=".$last_page_send_back."&tmc=2";

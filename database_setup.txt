@@ -36,8 +36,9 @@ comment_text varchar(5000) NOT NULL,
 posted_date int NOT NULL,
 PRIMARY KEY (comment_id)
 );
-CREATE TABLE generated_codes (
+CREATE TABLE activity_log (
 code_id varchar(500) NOT NULL,
+activity_type varchar(500) NOT NULL,
 associated_user_id varchar(500) NOT NULL,
 date_generated int NOT NULL,
 code_value varchar(5000) NOT NULL,

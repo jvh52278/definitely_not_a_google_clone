@@ -1,0 +1,96 @@
+<?php
+    session_start();
+    // show errors
+    /*
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+    */
+    //
+    include "./database_access_functions.php";
+    include "./common_utility_functions.php";
+    $user_info_retrieval = $database_access_object->prepared_statment_select_on_one_record("users", "user_id", $_SESSION["logged_in_user"], "s");
+    // redirect if the user is not admin
+    if ($user_info_retrieval[0]["is_admin_y_n"] != "y") {
+        header("Location: ./main.php");
+    }
+    //
+    $_SESSION["current_video"] = "";
+    //
+    $video_id = $_GET["video_id"];
+    $_SESSION["current_video"] = $video_id;
+    // retrieve video details
+    $video_info = $database_access_object->prepared_statment_select_on_one_record("videos", "video_id",$video_id, "s");
+    // if the video id is not valid, redirect away
+    if (count($video_info) == 0) {
+        header("Location: ./upload_review.php");
+    }
+    //
+    $video_title = $video_info[0]["title"];
+    $video_description = $video_info[0]["description"]; // description
+    $video_uploader_id = $video_info[0]["uploader"]; // uploader
+    $video_upload_date = $video_info[0]["upload_date"]; // upload_date
+    $human_readable_date = date('m-d-Y H:i:s T', $video_upload_date);
+    $video_file_original = $video_info[0]["path_to_video_file"]; // path_to_video_file
+    $video_file_alt = $video_info[0]["path_to_video_file_alt"]; // path_to_video_file_alt
+    $thumbnail = $video_info[0]["path_to_thumbnail"]; // path_to_thumbnail
+    $upload_approved = $video_info[0]["upload_approved_y_n"]; // upload_approved_y_n
+    // if the video is not approved, redirect away
+    $video_display_approved = false;
+    if ($upload_approved == "n") {
+        $video_display_approved = true;
+    }
+    if ($video_display_approved == false && count($video_info) == 1) {
+        header("Location: ./upload_review.php");
+    }
+    // retrieve the username of the uploader
+    $uploader_info = $database_access_object->prepared_statment_select_on_one_record("users", "user_id", $video_uploader_id, "s");
+    $uploader_username = $uploader_info[0]["user_name"];
+    // recommendation bar settings
+    $display_mode_input = "short"; // "full", "all" or "short"
+    $override_default_start_values = true;
+    $delete_option_active = false;
+    $admin_moderation_mode_active = false;
+    $y_value = "y";
+    $custom_start_results = $database_access_object->prepared_statment_select_on_one_record("videos", "upload_approved_y_n", $y_value, "s"); // use if $override_default_start_values is true
+    $self_redirect_link = "video.php"; // the relative file path of the page
+    //
+    $last_page = $_GET["last_page_displayed"];// retrieve this form input for pagination view
+    if (empty($last_page)) {
+        $last_page = 0;
+    }
+    $search_input = check_and_replace_if_variable_is_empty(trim_spaces_from_string($video_title)); // retrieve this input for pagination view
+    $seperated_search_terms = return_seperated_alnum_chars($search_input);
+    $ignore_this = $video_id;
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?php echo $video_title ?></title>
+    <link rel="stylesheet" href="./css/colours.css">
+    <link rel="stylesheet" href="./css/review_user_upload_css.css">
+    <link rel="stylesheet" href="./css/common_element_classes.css">
+    <link rel="stylesheet" href="./css/short_display_css.css">
+</head>
+<body>
+    <div id="top_section">
+        <h2 class="center_h2_link"><a href="./upload_review.php?last_page_displayed=<?php echo $last_page ?>">Back</a></h2>
+    </div>
+    <div id="moderation_options">
+        <h2 class="center_h2_link"><a href="">Approve public</a></h2>
+        <h2 class="center_h2_link"><a href="">Approve private</a></h2>
+        <h2 class="center_h2_link"><a href="">Delete</a></h2>
+    </div>
+    <video id="video_section" poster="<?php echo $thumbnail ?>" controls>
+        <source src="<?php echo $video_file_original ?>">
+        <source src="<?php echo $video_file_alt ?>">
+    </video>
+    <div id="info_section">
+        <h2><?php echo $video_title ?></h2>
+        <h4>uploaded by <p style="display: inline-block; text-decoration: underline;"><?php echo $uploader_username ?></p> on <?php echo $human_readable_date ?></h4>
+        <p><?php echo $video_description ?></p>
+    </div>
+</body>
+</html>

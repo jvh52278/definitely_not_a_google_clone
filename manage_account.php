@@ -28,7 +28,7 @@
         <!-- show the approve link if the user is admin -->
         <?php
         if ($_SESSION["is_admin"] == "y") {
-            echo '<div class="center_container"><a href="">Approve User Uploads</a></div>';
+            echo '<div class="center_container"><a href="./upload_review.php">Approve User Uploads</a></div>';
         }
         ?>
         <div class="center_container"><a href="./main.php">Return to homepage</a></div>
