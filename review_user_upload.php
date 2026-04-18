@@ -59,6 +59,7 @@
     if (empty($last_page)) {
         $last_page = 0;
     }
+    $last_page_send_back = urlencode(strval($last_page));
     $search_input = check_and_replace_if_variable_is_empty(trim_spaces_from_string($video_title)); // retrieve this input for pagination view
     $seperated_search_terms = return_seperated_alnum_chars($search_input);
     $ignore_this = $video_id;
@@ -79,8 +80,8 @@
         <h2 class="center_h2_link"><a href="./upload_review.php?last_page_displayed=<?php echo $last_page ?>">Back</a></h2>
     </div>
     <div id="moderation_options">
-        <h2 class="center_h2_link"><a href="">Approve public</a></h2>
-        <h2 class="center_h2_link"><a href="">Approve private</a></h2>
+        <h2 class="center_h2_link"><a href="./approve_processing_public.php?v=<?php echo $video_id?>&last_page_displayed=<?php echo $last_page_send_back?>">Approve public</a></h2>
+        <h2 class="center_h2_link"><a href="./approve_processing_private.php?v=<?php echo $video_id?>&last_page_displayed=<?php echo $last_page_send_back?>">Approve private</a></h2>
         <h2 class="center_h2_link"><a href="">Delete</a></h2>
     </div>
     <video id="video_section" poster="<?php echo $thumbnail ?>" controls>

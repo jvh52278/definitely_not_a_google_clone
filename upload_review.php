@@ -21,6 +21,12 @@
     if ($top_message_code == "4") {
         $top_message = "Operation completed: video has been deleted";
     }
+    if ($top_message_code == "5") {
+        $top_message = "Operation completed: video has been approved - public";
+    }
+    if ($top_message_code == "6") {
+        $top_message = "Operation completed: video has been approved - private";
+    }
 
     $user_info_retrieval = $database_access_object->prepared_statment_select_on_one_record("users", "user_id", $_SESSION["logged_in_user"], "s");
     // redirect if the user is not admin
