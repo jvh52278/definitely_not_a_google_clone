@@ -82,7 +82,7 @@
     <div id="moderation_options">
         <h2 class="center_h2_link"><a href="./approve_processing_public.php?v=<?php echo $video_id?>&last_page_displayed=<?php echo $last_page_send_back?>">Approve public</a></h2>
         <h2 class="center_h2_link"><a href="./approve_processing_private.php?v=<?php echo $video_id?>&last_page_displayed=<?php echo $last_page_send_back?>">Approve private</a></h2>
-        <h2 class="center_h2_link"><a href="">Delete</a></h2>
+        <h2 class="center_h2_link"><a href="./delete_processing.php?v=<?php echo $video_id?>&rd=a&last_page_displayed=<?php echo $last_page_send_back?>">Delete</a></h2>
     </div>
     <video id="video_section" poster="<?php echo $thumbnail ?>" controls>
         <source src="<?php echo $video_file_original ?>">

@@ -5,9 +5,12 @@
     $force_efficient_file_size = true; // if true, uploads are limited to 1gb in size and 20 minutes in length -> change max values below
     $force_16_9_mp4_format = true; // if true, uploads must be in mp4 format, and with a 16:9 or 9:16 aspect ratio
     $force_cpu_usage_state = true; // if true, uploads cannot be processed if cpu use is above 70%
+    $override_enforced_mp4_format = true; // if true, allow video uploads of any video format
+    $registration_lock = false; // if true, no new accounts can be created
 
+    $enforced_max_total_storage_space_used = 1000*1000*1000*180;
     $enforced_max_file_size = 1000*1000*1500; // in bytes, units of 1000
-    $enforced_max_video_length = 60*15; // in seconds
+    $enforced_max_video_length = 60*20; // in seconds
     $enforced_video_aspect_ratio = "16:9";
     $enforced_video_aspect_ratio_alt = "9:16";
     $enforced_video_file_ext = "MPEG-4";
