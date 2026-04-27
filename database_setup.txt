@@ -32,7 +32,7 @@ comment_id varchar(500) NOT NULL,
 associated_video_id varchar(500) NOT NULL,
 commenter_user_id varchar(500) NOT NULL,
 commenter_username varchar(500) NOT NULL,
-comment_text varchar(5000) NOT NULL,
+comment_text varchar(500) NOT NULL,
 posted_date int NOT NULL,
 PRIMARY KEY (comment_id)
 );

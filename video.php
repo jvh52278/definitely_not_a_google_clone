@@ -85,8 +85,6 @@
     <div id="recommendation_section">
         <?php include("./search_display_module.php"); ?>
     </div>
-    <div id="comments_section">
-        <h1 style="background-color: black;">Comments section placeholder</h1>
-    </div>
+    <iframe id="comments_section" src="./comment_frame_section.php"></iframe>
 </body>
 </html>
