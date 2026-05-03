@@ -7,6 +7,9 @@
     error_reporting(E_ALL);
     */
     //
+
+    $_SESSION["comment_section_height"] = 0;
+
     include "./database_access_functions.php";
     include "./common_utility_functions.php";
     $user_info_retrieval = $database_access_object->prepared_statment_select_on_one_record("users", "user_id", $_SESSION["logged_in_user"], "s");
@@ -33,7 +36,7 @@
     $upload_approved = $video_info[0]["upload_approved_y_n"]; // upload_approved_y_n
     // if the video is not approved, redirect away
     $video_display_approved = false;
-    if ($upload_approved == "y" || $upload_approved == "p") {
+    if ($upload_approved == "y" || $upload_approved == "p" || $video_uploader_id == $_SESSION["logged_in_user"]) {
         $video_display_approved = true;
     }
     if ($video_display_approved == false && count($video_info) == 1) {
@@ -88,3 +91,16 @@
     <iframe id="comments_section" src="./comment_frame_section.php"></iframe>
 </body>
 </html>
+<script>
+    iframe = document.getElementById("comments_section");
+    iframe.onload = function() {
+        
+        set_height = iframe.contentWindow.document.body.scrollHeight
+        max_height = 500
+        if (set_height > max_height) {
+            set_height = max_height
+        }
+    set_height = set_height + 25
+    iframe.style.height = set_height + 'px';
+    };
+</script>

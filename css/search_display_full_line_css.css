@@ -51,7 +51,10 @@
 }
 
 .full_display_section_image_small img {
-    width: 150px;
+    width: 100px;
+    /*max-height: 91px;*/
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
     border-style: solid;
     border-color: var(--secondary_matching_color);
     border-width: 1px;
@@ -123,7 +126,8 @@
     }
     .full_display_section_image_small img {
         display: block;
-        width: 35%;
+        width: 20%;
+        /*max-height: 240px;*/
         margin-left: auto;
         margin-right: auto;
     }
@@ -167,6 +171,9 @@
 @media (max-width: 900px) {
     .page_navigation_section {
         width: 35%;
+    }
+    .full_display_section_image_small img {
+        width: 25%;
     }
 }
 

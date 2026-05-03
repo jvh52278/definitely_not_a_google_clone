@@ -12,6 +12,7 @@
     $enforced_max_file_size = 1000*1000*1500; // in bytes, units of 1000
     $enforced_max_video_length = 60*20; // in seconds
     $enforced_video_aspect_ratio = "16:9";
+    $enforced_video_aspect_ratio_mobile_1 = "16:9x";
     $enforced_video_aspect_ratio_alt = "9:16";
     $enforced_video_file_ext = "MPEG-4";
     $enforced_cpu_use_limit = 70.0;

@@ -50,6 +50,10 @@
 .sd_image {
     display: block;
     width: 90%;
+    /* make the image fit into a perfect square based on the element width */
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    /*max-height: 150px;*/
     margin-left: auto;
     margin-right: auto;
     border-style: solid;
@@ -60,6 +64,8 @@
 .sd_image_hidden {
     display: block;
     width: 90%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
     margin-left: auto;
     margin-right: auto;
 }

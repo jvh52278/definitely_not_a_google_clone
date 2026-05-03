@@ -22,7 +22,21 @@
     </form>
     <?php
     //display comments
-    print_debug_test_value(var_dump($comment_data_retrieval), "white");
+    for ($x = count($comment_data_retrieval) - 1; $x >= 0 ; $x = $x - 1) {
+        $display_commenter_username = $comment_data_retrieval[$x]["commenter_username"];
+        $display_comment_text = $comment_data_retrieval[$x]["comment_text"];
+        $display_comment_posted_date = date('m-d-Y H:i:s T', $comment_data_retrieval[$x]["posted_date"]);
+        $comment_display_container = "
+        <div id='comment_display'>
+        <p>$display_comment_text</p>
+        <div>
+        </div>
+        <p class='inner_text_underlined'>$display_commenter_username</p>
+        <p class='inner_text'> - $display_comment_posted_date</p>
+        </div>
+        ";
+        echo $comment_display_container;
+    }
     ?>
 </body>
 </html>
@@ -46,6 +60,20 @@
     }
     p {
         color: var(--primary_text_color_1);
+        overflow-wrap: break-word;
+    }
+    .inner_text_underlined {
+        color: var(--primary_text_color_1);
+        text-decoration: underline;
+        display: inline;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    .inner_text {
+        color: var(--primary_text_color_1);
+        display: inline;
+        margin-top: 0;
+        margin-bottom: 0;
     }
     a {
         color: var(--primary_text_color_1);
@@ -63,6 +91,13 @@
     #comment_interation_section {
         margin-top: 5px;
         margin-bottom: 5px;
+        border-style: solid;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        border-color: var(--primary_text_color_1);
+        border-width: 1px;
+        padding-bottom: 5px;
     }
     #post_comment_button {
         font-family: Sans-Serif;

@@ -1,11 +1,11 @@
 <?php
     session_start();
     //
-    
+    /*
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
-    
+    */
     //
     include "./database_access_functions.php";
     include "./common_utility_functions.php";
@@ -38,6 +38,7 @@
     } else {
         $posted_by_user = $_SESSION["logged_in_user"];
         $user_info_retrieval = $database_access_object->prepared_statment_select_on_one_record("users", "user_id", $posted_by_user, "s");
+        $posted_by_user_username = $user_info_retrieval[0]["user_name"];
     }
     // prepare the comment text for database insertion
     $comment_text = "";
@@ -55,6 +56,11 @@
             $comment_text = $temp_string;
         }
     }
+
+    if (empty(trim($associated_video_id))) {
+        $valid_comment = false;
+    }
+
     // prepare the posted date
     $date_posted = time();
     if ($valid_comment == true) {

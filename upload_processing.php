@@ -182,7 +182,7 @@ $input_video_description = trim_spaces_from_string($_POST["video_description"]);
                 // if not overidden, check video format and aspect ratio
                 $is_16_9_or_9_16 = false;
                 $is_mp4 = false;
-                if ($video_aspect_ratio == $enforced_video_aspect_ratio || $video_aspect_ratio == $enforced_video_aspect_ratio_alt) {
+                if ($video_aspect_ratio == $enforced_video_aspect_ratio || $video_aspect_ratio == $enforced_video_aspect_ratio_alt || $video_aspect_ratio == $enforced_video_aspect_ratio_mobile_1) {
                     $is_16_9_or_9_16 = true;
                 }
                 if ($video_format == $enforced_video_file_ext || $override_enforced_mp4_format == true) {
