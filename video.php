@@ -80,7 +80,7 @@
         <source src="<?php echo $video_file_alt ?>">
     </video>
     <div id="info_section">
-        <iframe src="./vote_bar.php" frameborder="0"></iframe>
+        <iframe id="vote_bar" src="./vote_bar.php" frameborder="0"></iframe>
         <h2><?php echo $video_title ?></h2>
         <h4>uploaded by <p style="display: inline-block; text-decoration: underline;"><?php echo $uploader_username ?></p> on <?php echo $human_readable_date ?></h4>
         <p><?php echo $video_description ?></p>
@@ -103,4 +103,9 @@
     set_height = set_height + 25
     iframe.style.height = set_height + 'px';
     };
+    vote_bar_iframe = document.getElementById("vote_bar");
+    vote_bar_iframe.onload = function () {
+        vote_bar_height = vote_bar_iframe.contentWindow.document.body.scrollHeight + 20;
+        vote_bar_iframe.style.height = vote_bar_height + 'px';
+    }
 </script>
