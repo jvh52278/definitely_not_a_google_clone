@@ -44,6 +44,7 @@ $input_video_description = trim_spaces_from_string($_POST["video_description"]);
         $upload_error_status = 0;
         $title_error_status = 0;
         $description_error_status = 0;
+        $c = 0;
 
         $video_file_size = "";
         $video_length = "";
@@ -64,13 +65,14 @@ $input_video_description = trim_spaces_from_string($_POST["video_description"]);
             // check cpu usage
             $current_cpu_usage = shell_exec($cpu_usage_calulation);
             $comparison_value = (float) $current_cpu_usage;
+            // check total disk use -> this lazy programmer would have renamed the global activation variable, but was nonetheless too lazy to do so
             if ($comparison_value <= $enforced_cpu_use_limit) {
                 $cpu_usage_does_not_exceed_maximum = true;
             } else {
                 $upload_error_status = 7;
             }
         }
-        if ($cpu_usage_does_not_exceed_maximum = true) {
+        if ($cpu_usage_does_not_exceed_maximum == true) {
             if ($force_preprocessing_virus_scan == false && $force_upload_limiter == false) {
                 $preprocessing_checks_are_valid = true;
             } else {
@@ -94,6 +96,46 @@ $input_video_description = trim_spaces_from_string($_POST["video_description"]);
                     }
                 }
                 // -- user upload count
+                if ($force_upload_limiter == true) {
+                    $c = 1;
+                    //header("Location: ./main.php");
+                    if ($user_info_retrieval[0]["is_admin_y_n"] != "y") {
+                        $c = 2;
+                        $test_count = $database_access_object->prepared_statment_select_on_one_record("videos", "uploader", $_SESSION["logged_in_user"], "s");
+                        if (count($test_count) >= $upload_limit_before_kickback) {
+                            $c = 3;
+                            $min_random_value = 700; // out of 1000
+                            $excess_over_limit = count($test_count) - $upload_limit_before_kickback;
+                            if ($excess_over_limit > 1) {
+                                $extra_addition = $excess_over_limit * 100;
+                                $new_min_value = $extra_addition + $min_random_value;
+                                if ($new_min_value > 1000) {
+                                    $min_random_value = 999;
+                                } else {
+                                    $min_random_value = $new_min_value;
+                                }
+                            }
+                            // generate random int between 1 and 1000
+                            $check_number = rand(1, 1000);
+                            $c = $min_random_value;
+                            if ($check_number < $min_random_value) {
+                                $c = 1234;
+                                $preprocessing_checks_are_valid = false;
+                                $top_message_status = 1;
+                            } else {
+                                //header("Location: ./main.php");
+                                $c = 4321;
+                                $preprocessing_checks_are_valid = true;
+                            }
+                        } else {
+                            //header("Location: ./main.php");
+                            $preprocessing_checks_are_valid = true;
+                        }
+                    } else {
+                        //header("Location: ./main.php");
+                        $preprocessing_checks_are_valid = true;
+                    }
+                }
             }
         }
         // check if form inputs are valid
@@ -294,7 +336,7 @@ $input_video_description = trim_spaces_from_string($_POST["video_description"]);
             header("Location: ./upload_success.php");
         } else {
             // redirect back with errors
-            header("Location: ./upload_video.php?top_message_code=$top_message_status&upload_message_code=$upload_error_status&title_message_code=$title_error_status&description_message_code=$description_error_status");
+            header("Location: ./upload_video.php?top_message_code=$top_message_status&upload_message_code=$upload_error_status&title_message_code=$title_error_status&description_message_code=$description_error_status&c=$c");
             //header("refresh:7;url=./upload_video.php?top_message_code=$top_message_status&upload_message_code=$upload_error_status&title_message_code=$title_error_status&description_message_code=$description_error_status");
         }
     ?>

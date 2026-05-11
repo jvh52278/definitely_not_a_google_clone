@@ -2,9 +2,20 @@
 // set the top message
 $top_message_status = $_GET["top_message_code"]; // 0 = no error, 1 = generic error
 $top_message = "";
+$display_top_message = false;
 if ($top_message_status == "1") {
-    $top_message = "Input Error";
+    $display_top_message = true;
+    $top_message = "
+Si il y aucune d'autre erreur, un ou plusiere erreurs auraient se produire: 
+<br>
+1. La taille de fichier ne peut pas dépasser mille vignt quatre mégaoctet
+<br>
+2. Votre téléchargement était interrompu
+<br>
+3. Le monstre en spaghetti volant est retourné au plan mortel et il cherche le vengeance contre l'espèce humaine
+";
 }
+
 // set the upload error message
 $upload_error_status = $_GET["upload_message_code"]; // 0 = no error, 1 = blank input error, 2 = file size error, 3 = video length error, 4 = file format error
 $upload_error = "";
@@ -15,7 +26,7 @@ if ($upload_error_status == "2") {
     $upload_error = "The uploaded file must be smaller than 1.5GB";
 }
 if ($upload_error_status == "3") {
-    $upload_error = "The video length cannot exceed 15 minutes";
+    $upload_error = "The video length cannot exceed 20 minutes";
 }
 if ($upload_error_status == "4") {
     $upload_error = "The uploaded file must be in mp4 format, with an aspect ratio of 16:9 or 9:16";
@@ -24,7 +35,7 @@ if ($upload_error_status == "5") {
     $upload_error = "The uploaded file must be a video";
 }
 if ($upload_error_status == "6") {
-    $upload_error = "Nice try. You can't get a virus past me.";
+    $upload_error = "ERR_V_80085";
 }
 if ($upload_error_status == "7") {
     $upload_error = "Server is busy. Please try again later.";
@@ -68,7 +79,12 @@ $user_info_retrieval = $database_access_object->prepared_statment_select_on_one_
     <div class="page_content_container">
         <h1 class="primary_page_title">Upload Video</h1>
         <p class="info_text" id="global_variable_info_text"></p> <!--text to display if certain global control variables are active-->
-        <p class="info_text" id="return_info_text"><?php echo $top_message ?></p> <!--text to display, returned from the upload processing page if certain conditions are active-->
+        <?php
+        if ($display_top_message == true) {
+            echo "<p class='info_text' style='border-style: solid; border-width: 1px; border-color: var(--error_color); padding-top: 3px; padding-bottom: 3px' id='return_info_text'>$top_message</p>";
+        }
+        ?>
+        <!--text to display, returned from the upload processing page if certain conditions are active-->
         <form action="./upload_processing.php" method="post" enctype="multipart/form-data">
             <div id="oneoff_input">
                 <div id="sbs_section">
