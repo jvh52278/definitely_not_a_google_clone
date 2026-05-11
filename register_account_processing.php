@@ -4,6 +4,7 @@ session_start();
 // ### link the database access functions
 include "./database_access_functions.php";
 include "./common_utility_functions.php";
+include "./global_control_variables.php";
 $username_error = "";
 $password_error = "";
 $username_input = trim_spaces_from_string($_POST["username"]);
@@ -16,6 +17,7 @@ $username_does_not_contain_admin = false;
 $username_is_not_empty = false;
 $password_is_not_blank = false;
 // # check that the username does not already exist - the username should not already exist in the database
+// there are better ways to redirect and send back data. this programmer is too lazy to change this here.
 if (!empty($username_input)) {
     if ($database_access_object->check_if_value_exists($username_input, "s", "user_name", "users") == false) {
         $username_is_unique = true;
@@ -48,6 +50,14 @@ if (!empty($password_input)) {
 // # if all password checks pass, set $password_is_valid to true
 if ($password_is_not_blank == true) {
     $password_is_valid = true;
+}
+
+// set the username and password checks to false if registration lock is enabled
+if ($registration_lock == true) {
+    $username_is_valid = false;
+    $password_is_valid = false;
+    // redirect away, just for fun
+    header("Location: https://www.youtube.com/watch?v=dQw4w9WgXcQ");
 }
 
 // # if username and password checks pass, create the new account and redirect to registration success page
@@ -106,6 +116,7 @@ if (($username_is_valid == true) && ($password_is_valid == true)) {
 }
 ?>
 <!-- if username and/or password check fails, redirect back with error messages -->
+<!-- there are better ways to redirect and send back data. this programmer is too lazy to change this here. -->
 <form id="error_auto_submit" action="./register_account.php" method="post">
     <?php
     if (($password_is_valid == false) || ($username_is_valid == false)) {

@@ -267,6 +267,9 @@ try {
         </div>
         "; // to navigate between pages, only show if more than 1 page exists
         if ($full_search_mode == true || $display_all == true) {
+            if ($display_all == true) {
+                $final_display_items = array_reverse($final_display_items);
+            }
             if (count($final_display_items) > 0) { 
                 foreach ($final_display_items as $display_item) {
                     $results_displayed_running_count = $results_displayed_running_count + 1;

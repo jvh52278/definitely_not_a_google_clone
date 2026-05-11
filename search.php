@@ -36,6 +36,7 @@ if (empty($last_page)) {
     <link rel="stylesheet" href="./css/colours.css">
     <link rel="stylesheet" href="./css/common_element_classes.css">
     <link rel="stylesheet" href="./css/search_css.css">
+    <link rel="stylesheet" href="./css/search_display_full_line_css.css">
 </head>
 <body>
     <div id="page_content">
