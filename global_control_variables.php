@@ -9,7 +9,7 @@
     $override_enforced_mp4_format = true; // if true, allow video uploads of any video format
     $registration_lock = true; // if true, no new accounts can be created
 
-    $enforced_max_total_storage_space_used = 1000*1000*1000*180;
+    //$enforced_max_total_storage_space_used = 1000*1000*1000*180;
     $enforced_max_file_size = 1000*1000*1500; // in bytes, units of 1000
     $enforced_max_video_length = 60*20; // in seconds
     $enforced_video_aspect_ratio = "16:9";

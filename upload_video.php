@@ -63,6 +63,14 @@ if ($_SESSION["logged_in"] != true) {
 include("./database_access_functions.php");
 include("./common_utility_functions.php");
 include("./global_control_variables.php");
+//
+/*
+$document_root = $_SERVER['DOCUMENT_ROOT'];
+$cpu_usage_calulation = "bash ".$document_root."/"."these_files_should_be_hidden/cpu_usage_calculation.sh";
+$cpu_test = shell_exec($cpu_usage_calulation);
+print_debug_test_value($cpu_test, "white");
+*/
+//
 $user_info_retrieval = $database_access_object->prepared_statment_select_on_one_record("users", "user_id", $_SESSION["logged_in_user"], "s");
 ?>
 <!DOCTYPE html>

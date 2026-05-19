@@ -12,6 +12,7 @@ if ($_SESSION["logged_in"] != true) {
 include("./database_access_functions.php");
 include("./common_utility_functions.php");
 include("./global_control_variables.php");
+include("./storage_io_check_module.php");
 $user_info_retrieval = $database_access_object->prepared_statment_select_on_one_record("users", "user_id", $_SESSION["logged_in_user"], "s");
 // retrieve form inputs
 $input_video_title = trim_spaces_from_string($_POST["video_title"]);
@@ -54,7 +55,6 @@ $input_video_description = trim_spaces_from_string($_POST["video_description"]);
         $document_root = $_SERVER['DOCUMENT_ROOT'];
         $cpu_usage_calulation = "bash ".$document_root."/"."these_files_should_be_hidden/cpu_usage_calculation.sh";
         $current_cpu_usage = "";
-
         
         
         // preprocessing checks
@@ -66,7 +66,7 @@ $input_video_description = trim_spaces_from_string($_POST["video_description"]);
             $current_cpu_usage = shell_exec($cpu_usage_calulation);
             $comparison_value = (float) $current_cpu_usage;
             // check total disk use -> this lazy programmer would have renamed the global activation variable, but was nonetheless too lazy to do so
-            if ($comparison_value <= $enforced_cpu_use_limit) {
+            if ($comparison_value <= $enforced_cpu_use_limit && $total_size_of_upload_directory < $enforced_max_total_storage_space_used) {
                 $cpu_usage_does_not_exceed_maximum = true;
             } else {
                 $upload_error_status = 7;
