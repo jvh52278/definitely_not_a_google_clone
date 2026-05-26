@@ -159,8 +159,31 @@ $input_video_description = trim_spaces_from_string($_POST["video_description"]);
                         $video_length = shell_exec($video_length_command);
                         $video_aspect_ratio_command = "ffprobe -v error -select_streams v:0 -show_entries stream=display_aspect_ratio -of csv=s=x:p=0 $path_to_temporary_upload_file";
                         $video_aspect_ratio = trim(shell_exec($video_aspect_ratio_command));
-                        $video_format_command = "mediainfo $path_to_temporary_upload_file | grep 'MPEG-4' | cut -d ':' -f 2 | xargs";
+                        //$video_format_command = "mediainfo $path_to_temporary_upload_file | grep 'MPEG-4' | cut -d ':' -f 2 | xargs";
+                        $video_format_command = "ffprobe -v error -select_streams v:0 -show_entries stream=codec_name -of default=noprint_wrappers=1:nokey=1 $path_to_temporary_upload_file";
                         $video_format = trim(shell_exec($video_format_command));
+                        //$c = $video_format;
+                        if ($video_aspect_ratio == "N/Ax") {
+                            // secondary check if the aspect ratio is incorrectly determined
+                            $width_retrieval_command = "ffprobe -v error -select_streams v:0 -show_entries stream=width -of default=nw=1:nk=1 $path_to_temporary_upload_file";
+                            $height_retrieval_command = "ffprobe -v error -select_streams v:0 -show_entries stream=height -of default=nw=1:nk=1 $path_to_temporary_upload_file";
+                            $video_width = trim(shell_exec($width_retrieval_command));
+                            $video_height = trim(shell_exec($height_retrieval_command));
+                            if ($video_width > 0 && $video_height > 0) {
+                                $calc_ratio = round($video_width/$video_height,9);
+                                //$c = urldecode($calc_ratio);
+                                // 16:9 is 1.777777778
+                                // 9:16 is 0.5625
+                                if ($calc_ratio == 1.777777778) {
+                                    $video_aspect_ratio = "16:9";
+                                    $c = 169;
+                                }
+                                if ($calc_ratio == 0.5625) {
+                                    $video_aspect_ratio = "9:16";
+                                    $c = 916;
+                                }
+                            }
+                        }
                     }
                 }
                 catch (Exception $e) {
