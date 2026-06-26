@@ -82,6 +82,7 @@
                 // in all cases, delete the database record
                 try {
                     $database_access_object->prepared_statment_delete_on_one_record("videos", "video_id", $video_to_delete, "s");
+                    $database_access_object->prepared_statment_delete_on_one_record("comments", "associated_video_id", $video_to_delete, "s");
                 }
                 catch (Exception $e) {
                     $failed_record_deletes = $failed_record_deletes + 1;

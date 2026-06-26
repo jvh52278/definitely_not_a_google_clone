@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="./css/colours.css">
 </head>
 <body>
-    <h1 id="title_header">Your upload has been processed<br>You will be redirected back to the upload page in 5 seconds</h1>
+    <h1 id="title_header">Upload successful. Please allow up to 24 hours for final processing<br>You will be redirected back to the upload page in 5 seconds</h1>
     <img id="body_image" src="./images/please_accept_this_drawing_of_a_spider_as_payment.png" alt="a very old and very specific reference">
     <?php
         header("refresh:5;url=./upload_video.php");
