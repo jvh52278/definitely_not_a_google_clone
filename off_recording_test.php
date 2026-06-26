@@ -6,10 +6,12 @@
     <title>home page</title>
 </head>
 <body>
-    <h1>testing storage check</h1>
+    <h1>testing event log</h1>
     <?php
+        session_start();
         include("./database_access_functions.php");
         include("./storage_io_check_module.php");
+        include("./event_log_module.php");
     ?>
 </body>
 </html>

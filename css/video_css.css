@@ -15,7 +15,7 @@ body {
     max-height: 500px;
     margin-left: auto;
     margin-right: auto;
-    border-style: solid;
+    border-style: none;
     border-top: none;
     border-bottom: none;
     border-width: 2px;

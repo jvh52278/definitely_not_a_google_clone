@@ -2,7 +2,8 @@
     session_start();
     // if a user is not logged in, redirect back to login page
     if ($_SESSION["logged_in"] != true) {
-        header("Location: ./login.php");
+        $login_check_r = $_GET["lgp"];
+        header("Location: ./login.php?c=999");
     }
     include "./database_access_functions.php";
     include "./common_utility_functions.php";

@@ -29,7 +29,11 @@ if (($username_is_valid == true) && ($password_is_valid == true)) {
 if ($login_is_valid == true) {
     // save the user id of the user into a session variable
     $_SESSION["logged_in"] = true;
-    header("Location: ./manage_account.php");
+    $login_check = "f";
+    if ($_SESSION["logged_in"] == true) {
+        $login_check = "p";
+    }
+    header("Location: ./manage_account.php?lgp=$login_check");
 }
 ?>
 <!-- if the username and password are not valid, redirect back to the login page with the error message -->
