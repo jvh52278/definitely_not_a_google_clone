@@ -28,7 +28,7 @@ Developed and tested on ubuntu 24.04.
 to get started, run the sql code in the file "database_setup.txt" to setup the database
 <br>
 <br>
-In the file "database_access_functions.php", at the bottom of the file, change the database access information to reflect your own database and user
+In the file "database_access_functions.php", at the bottom of the file, change the database access information to reflect your own database and user. Change settings in global_control_variables.php and storage_io_check_module.php to change site functionality.
 <br>
 <br>
 There is also an admin user that will be created. The password to this user is "admin". It would be wise to change the password for this user.

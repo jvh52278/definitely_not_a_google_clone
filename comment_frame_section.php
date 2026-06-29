@@ -25,7 +25,8 @@
     for ($x = count($comment_data_retrieval) - 1; $x >= 0 ; $x = $x - 1) {
         $display_commenter_username = $comment_data_retrieval[$x]["commenter_username"];
         $display_comment_text = $comment_data_retrieval[$x]["comment_text"];
-        $display_comment_posted_date = date('m-d-Y H:i:s T', $comment_data_retrieval[$x]["posted_date"]);
+        //$display_comment_posted_date = date('m-d-Y H:i:s T', $comment_data_retrieval[$x]["posted_date"]);
+        $display_comment_posted_date = alt_40k_time_conversion($comment_data_retrieval[$x]["posted_date"]);
         $comment_display_container = "
         <div id='comment_display'>
         <p>$display_comment_text</p>

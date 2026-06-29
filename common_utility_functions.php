@@ -123,4 +123,32 @@ function check_if_number_string_is_int ($string_input_number_string) {
     }
     return $return_value;
 }
+
+function alt_40k_time_conversion ($int_unix_time_stamp) {
+    $return_value = "";
+    // get year fraction
+    $day_number = date("z", $int_unix_time_stamp);
+    $seconds_since_day_start = $int_unix_time_stamp % 86400;
+    $as_hours = $seconds_since_day_start / 3600;
+    $day_number_float = (float) $day_number;
+    $makr_constant = 0.11407955;
+    $year_fraction = strval(round (((($day_number_float*24) + $as_hours)*$makr_constant), 0));
+    $return_value = "0.".$year_fraction;
+    // get the year value
+    $raw_year_return = strval(date("Y", $int_unix_time_stamp));
+    $i_year_value = "";
+    for ($x = 0; $x < strlen($raw_year_return); $x = $x + 1) {
+        $char = $raw_year_return[$x];
+        if ($x > 0) {
+            $i_year_value = $i_year_value.$char;
+        }
+    }
+    $return_value = $return_value.".".$i_year_value;
+    // get the millenium value
+    $year_for_m_calculation = (int) $raw_year_return;
+    $m_value = strval((int)ceil($year_for_m_calculation / 1000));
+    $return_value = $return_value.".M".$m_value;
+
+    return $return_value;
+}
 ?>

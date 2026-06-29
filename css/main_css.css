@@ -10,6 +10,10 @@ body {
     /*                        */
 }
 
+.empty_message {
+    text-align: center;
+}
+
 p {
     color: var(--primary_text_color_1);
 }

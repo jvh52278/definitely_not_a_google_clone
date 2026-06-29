@@ -34,7 +34,8 @@
     $video_description = $video_info[0]["description"]; // description
     $video_uploader_id = $video_info[0]["uploader"]; // uploader
     $video_upload_date = $video_info[0]["upload_date"]; // upload_date
-    $human_readable_date = date('m-d-Y H:i:s T', $video_upload_date);
+    //$human_readable_date = date('m-d-Y H:i:s T', $video_upload_date);
+    $human_readable_date = alt_40k_time_conversion($video_upload_date);
     $video_file_original = $video_info[0]["path_to_video_file"]; // path_to_video_file
     $video_file_alt = $video_info[0]["path_to_video_file_alt"]; // path_to_video_file_alt
     $thumbnail = $video_info[0]["path_to_thumbnail"]; // path_to_thumbnail
