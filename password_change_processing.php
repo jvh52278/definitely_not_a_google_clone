@@ -7,6 +7,11 @@ if ($_SESSION["logged_in"] != true) {
 include "./database_access_functions.php";
 include "./common_utility_functions.php";
 
+// event logging
+$event_type = "password change attempt";
+$event_value = strval($_SERVER['REMOTE_ADDR']); // strval($_SERVER['REMOTE_ADDR'])
+include("./event_log_module.php");
+
 // retrieve post inputs
 $current_password_input = trim_spaces_from_string(check_and_replace_if_variable_is_empty($_POST["old_password"]));
 $new_password_input = trim_spaces_from_string(check_and_replace_if_variable_is_empty($_POST["new_password"]));
@@ -85,6 +90,10 @@ if ($password_change_is_valid == false) {
 }
 // if the password change is valid, redirect back with success message
 if ($password_change_is_valid == true) {
+    // event logging
+    $event_type = "password change checks passed";
+    $event_value = strval($_SERVER['REMOTE_ADDR']); // strval($_SERVER['REMOTE_ADDR'])
+    include("./event_log_module.php");
     // change the password
     $database_access_object->prepared_statment_update_on_one_record("users", "user_id", $_SESSION["logged_in_user"], "s", "password", hash('sha256', $new_password_input), "s");
     // redirect back with success message

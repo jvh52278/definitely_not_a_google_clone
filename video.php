@@ -13,11 +13,16 @@
     include "./database_access_functions.php";
     include "./common_utility_functions.php";
     $user_info_retrieval = $database_access_object->prepared_statment_select_on_one_record("users", "user_id", $_SESSION["logged_in_user"], "s");
+
     //
     $_SESSION["current_video"] = "";
     //
     $video_id = $_GET["video_id"];
     $_SESSION["current_video"] = $video_id;
+    // log event
+    $event_type = "video view";
+    $event_value = trim($_SESSION["current_video"]);
+    include("./event_log_module.php");
     // retrieve video details
     $video_info = $database_access_object->prepared_statment_select_on_one_record("videos", "video_id",$video_id, "s");
     // if the video id is not valid, redirect away

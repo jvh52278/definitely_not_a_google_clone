@@ -4,6 +4,12 @@
     include "./common_utility_functions.php";
     $user_info_retrieval = $database_access_object->prepared_statment_select_on_one_record("users", "user_id", $_SESSION["logged_in_user"], "s");
     $video_info_retrieval = $database_access_object->prepared_statment_select_on_one_record("videos", "video_id", $_SESSION["current_video"], "s");
+
+    // event logging
+    $event_type = "upvote";
+    $event_value = trim($_SESSION["current_video"]);
+    include("./event_log_module.php");
+
     if (count($video_info_retrieval) == 1) {
         $value_to_increment = "upvotes"; // the table collumn name of the vote value
         $current_vote_count = $video_info_retrieval[0][$value_to_increment];

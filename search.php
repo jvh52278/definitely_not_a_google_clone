@@ -12,6 +12,19 @@ include "./common_utility_functions.php";
 $user_info_retrieval = $database_access_object->prepared_statment_select_on_one_record("users", "user_id", $_SESSION["logged_in_user"], "s"); 
 //
 $search_input = check_and_replace_if_variable_is_empty(trim_spaces_from_string($_GET["search_terms"]));
+// event logging
+$logged_search_event = "";
+if (strlen($search_input) <= 1000) {
+    $logged_search_event = $search_input;
+} else {
+    for ($x = 0; $x <= 999; $x = $x + 1) {
+        $logged_search_event = $logged_search_event.$search_input[$x];
+    }
+}
+$event_type = "search bar active";
+$event_value = $logged_search_event; // strval($_SERVER['REMOTE_ADDR'])
+include("./event_log_module.php");
+//
 $seperated_search_terms = return_seperated_alnum_chars($search_input);
 $approved_value = "y";
 //

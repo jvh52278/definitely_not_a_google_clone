@@ -5,6 +5,10 @@ session_start();
 include "./database_access_functions.php";
 include "./common_utility_functions.php";
 include "./global_control_variables.php";
+// event logging
+$event_type = "account registration attempt";
+$event_value = strval($_SERVER['REMOTE_ADDR']); // strval($_SERVER['REMOTE_ADDR'])
+include("./event_log_module.php");
 $username_error = "";
 $password_error = "";
 $username_input = trim_spaces_from_string($_POST["username"]);
@@ -111,7 +115,10 @@ if (($username_is_valid == true) && ($password_is_valid == true)) {
     $prepared_sql_query->execute(); // NOTE: this does not return the result, if any exists
     // close the prepared query
     $prepared_sql_query->close();
-    // redirect to success page
+    // redirect to success page and log event
+    $event_type = "account registration checks passed";
+    $event_value = $user_id_to_insert; // strval($_SERVER['REMOTE_ADDR'])
+    include("./event_log_module.php");
     header("Location: ./register_account_success.php");
 }
 ?>

@@ -21,6 +21,10 @@
     }
 
     $video_to_edit = $_GET["v"];
+    // event logging
+    $event_type = "video approved private";
+    $event_value = $video_to_edit; // strval($_SERVER['REMOTE_ADDR'])
+    include("./event_log_module.php");
 
     $last_page = $_GET["last_page_displayed"];
     if (empty($last_page)) {

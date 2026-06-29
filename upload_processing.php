@@ -265,6 +265,7 @@ $input_video_description = trim_spaces_from_string($_POST["video_description"]);
         }
 
         if ($form_inputs_are_valid == true && $preprocessing_checks_are_valid == true && $primary_checks_are_valid == true) {
+            // event logging
             $unique_key_found = false;
             $unique_key_to_insert = ""; // -> insert into database as video id
             while ($unique_key_found == false) {
@@ -275,6 +276,10 @@ $input_video_description = trim_spaces_from_string($_POST["video_description"]);
                     $unique_key_found = true;
                 }
             }
+            $event_type = "upload success";
+            $event_value = strval($_SERVER['REMOTE_ADDR']); // strval($_SERVER['REMOTE_ADDR'])
+            include("./event_log_module.php");
+            //
             $save_file_name = trim(replace_spaces($input_video_title));
             $file_ext = pathinfo($_FILES['upload_file']["name"],PATHINFO_EXTENSION);
             $complete_file_name = $unique_key_to_insert.$save_file_name.".".$file_ext; // the filename of the original upload 
@@ -358,6 +363,10 @@ $input_video_description = trim_spaces_from_string($_POST["video_description"]);
 
             header("Location: ./upload_success.php");
         } else {
+            // event logging
+            $event_type = "failed upload";
+            $event_value = strval($_SERVER['REMOTE_ADDR']); // strval($_SERVER['REMOTE_ADDR'])
+            include("./event_log_module.php");
             // redirect back with errors
             header("Location: ./upload_video.php?top_message_code=$top_message_status&upload_message_code=$upload_error_status&title_message_code=$title_error_status&description_message_code=$description_error_status&c=$c");
             //header("refresh:7;url=./upload_video.php?top_message_code=$top_message_status&upload_message_code=$upload_error_status&title_message_code=$title_error_status&description_message_code=$description_error_status");

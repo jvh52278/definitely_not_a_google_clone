@@ -10,6 +10,11 @@
     include "./database_access_functions.php";
     include "./common_utility_functions.php";
 
+    // event logging
+    $event_type = "comment submitted";
+    $event_value = $_SESSION["current_video"];
+    include("./event_log_module.php");
+
     $valid_comment = false;
 
     $comment_value = trim($_POST["comment_text"]);

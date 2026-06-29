@@ -8,6 +8,10 @@
     include "./database_access_functions.php";
     include "./common_utility_functions.php";
     $user_info_retrieval = $database_access_object->prepared_statment_select_on_one_record("users", "user_id", $_SESSION["logged_in_user"], "s");
+    // event logging
+    $event_type = "accessed user management";
+    $event_value = strval($_SERVER['REMOTE_ADDR']); // strval($_SERVER['REMOTE_ADDR'])
+    include("./event_log_module.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">

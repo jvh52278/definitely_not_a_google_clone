@@ -17,6 +17,11 @@
     include "./global_control_variables.php";
     $user_info_retrieval = $database_access_object->prepared_statment_select_on_one_record("users", "user_id", $_SESSION["logged_in_user"], "s");
 
+    // event logging
+    $event_type = "video delete attempt";
+    $event_value = strval($_SERVER['REMOTE_ADDR']); // strval($_SERVER['REMOTE_ADDR'])
+    include("./event_log_module.php");
+
     $video_to_delete = $_GET["v"];
     $send_back_code = $_GET["rd"];
     $back_redirect_link = "";
@@ -52,6 +57,10 @@
             // if the video record exists, verify that the video uploader matches the logged in user or that the user is admin
             $user_check_value = $_SESSION["logged_in_user"];
             if ($test_record[0]["uploader"] == $user_check_value || $user_info_retrieval[0]["is_admin_y_n"] == "y") {
+                // event logging
+                $event_type = "video delete checks passed";
+                $event_value = $video_to_delete; // strval($_SERVER['REMOTE_ADDR'])
+                include("./event_log_module.php");
                 // if the user is allowed to delete the video, attempt to delete both recorded video file paths
                 $failed_file_deletes = 0;
                 $failed_record_deletes = 0;

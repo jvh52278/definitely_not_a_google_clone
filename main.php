@@ -18,6 +18,10 @@
             include "./common_header.php";
             include "./common_utility_functions.php";
             include "./database_access_functions.php";
+            // event logging
+            $event_type = "main page accessed";
+            $event_value = strval($_SERVER['REMOTE_ADDR']); // strval($_SERVER['REMOTE_ADDR'])
+            include("./event_log_module.php");
             // link the search display module
             //
             $approved_value = "y";
