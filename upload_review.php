@@ -50,6 +50,9 @@
     $seperated_search_terms = return_seperated_alnum_chars($search_input);
     // use this only if displaying in short mode
     //$ignore_this = ""; // the id of the video to not display -> to avoid showing the currently displayed video
+    // retreive server stat info
+    $all_uploads = $database_access_object->retrieve_all_records_from_table("videos");
+    $total_upload_count = count($all_uploads);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -66,6 +69,8 @@
     <h1 style="text-align: center;">Review user uploads</h1>
     <p id="status_message"><?php echo $top_message ?></p>
     <h2 class="center_element"><a href="./manage_account.php">Back</a></h2>
+    <p class="center_element" >total uploads in storage:<br><?php echo $total_upload_count ?></p>
+    <a class="link_element" href="./auto_clear_storage_space.php">clear storage space</a>
     <div id="display_section">
         <br>
         <?php include("./search_display_module.php") ?>

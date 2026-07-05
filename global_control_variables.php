@@ -7,7 +7,7 @@
     $force_16_9_mp4_format = true; // if true, uploads must be in mp4 format, and with a 16:9 or 9:16 aspect ratio
     $force_cpu_usage_state = true; // if true, uploads cannot be processed if cpu use is above 70%
     $override_enforced_mp4_format = false; // if true, allow video uploads of any video format
-    $registration_lock = true; // if true, no new accounts can be created
+    $registration_lock = false; // if true, no new accounts can be created
 
     //$enforced_max_total_storage_space_used = 1000*1000*1000*180;
     $enforced_max_file_size = 1000*1000*1500; // in bytes, units of 1000
