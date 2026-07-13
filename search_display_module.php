@@ -281,10 +281,10 @@ try {
                         $uploader_info = $database_access_object->prepared_statment_select_on_one_record("users", "user_id", $uploader_id, "s");
                         //
                         $link_video_id = $display_item;
-                        $display_title = $video_display_info[0]["title"];
-                        $display_description = $video_display_info[0]["description"];
+                        $display_title = string_sanitize($video_display_info[0]["title"]);
+                        $display_description = string_sanitize($video_display_info[0]["description"]);
                         $display_thumbnail = $video_display_info[0]["path_to_thumbnail"];
-                        $display_uploader_username = $uploader_info[0]["user_name"];
+                        $display_uploader_username = string_sanitize($uploader_info[0]["user_name"]);
                         $display_upload_date = $video_display_info[0]["upload_date"];
                         $human_readable_date = date('m-d-Y H:i:s T', $display_upload_date);
                         $display_video_link = "";
@@ -364,10 +364,10 @@ try {
                         $uploader_info = $database_access_object->prepared_statment_select_on_one_record("users", "user_id", $uploader_id, "s");
                         //
                         $link_video_id = $display_item;
-                        $display_title = $video_display_info[0]["title"];
-                        $display_description = $video_display_info[0]["description"];
+                        $display_title = string_sanitize($video_display_info[0]["title"]);
+                        $display_description = string_sanitize($video_display_info[0]["description"]);
                         $display_thumbnail = $video_display_info[0]["path_to_thumbnail"];
-                        $display_uploader_username = $uploader_info[0]["user_name"];
+                        $display_uploader_username = string_sanitize($uploader_info[0]["user_name"]);
                         $display_upload_date = $video_display_info[0]["upload_date"];
                         $human_readable_date = date('m-d-Y H:i:s T', $display_upload_date);
                         $display_video_link = "video.php?video_id=$link_video_id";

@@ -6,6 +6,7 @@
     }
     include "./database_access_functions.php";
     include "./common_utility_functions.php";
+    include "./storage_io_check_module.php";
 
     $top_message_code = $_GET["tmc"];
     $top_message = "";
@@ -53,6 +54,19 @@
     // retreive server stat info
     $all_uploads = $database_access_object->retrieve_all_records_from_table("videos");
     $total_upload_count = count($all_uploads);
+    $storage_space_used = (round($total_size_of_upload_directory/$enforced_max_total_storage_space_used, 6))*100;
+    $all_user_info = $database_access_object->retrieve_all_records_from_table("users");
+    $number_of_users = count($all_user_info);
+    $hp_check = "main page accessed";
+    $homepage_hits = $database_access_object->prepared_statment_select_on_one_record("activity_log", "activity_type", $hp_check, "s");
+    $number_of_homepage_hits = count($homepage_hits);
+    $all_homepage_hits_by_ip = array();
+    for ($x = 0; $x < count($homepage_hits); $x = $x + 1) {
+        $add_value = $homepage_hits[$x]["code_value"];
+        array_push($all_homepage_hits_by_ip, $add_value);
+    }
+    $sorted_hp = array_unique($all_homepage_hits_by_ip);
+    $number_of_unique_homepage_visits = count($sorted_hp);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -69,7 +83,25 @@
     <h1 style="text-align: center;">Review user uploads</h1>
     <p id="status_message"><?php echo $top_message ?></p>
     <h2 class="center_element"><a href="./manage_account.php">Back</a></h2>
-    <p class="center_element" >total uploads in storage:<br><?php echo $total_upload_count ?></p>
+    <p class="center_element" style="font-size: smaller;" >
+        total uploads in storage:<br><?php echo $total_upload_count ?>
+        <br>
+        total storage space used:
+        <br>
+        <?php echo $storage_space_used ?>%
+        <br>
+        total number of user accounts
+        <br>
+        <?php echo $number_of_users ?>
+        <br>
+        number of homepage visits
+        <br>
+        <?php echo $number_of_homepage_hits ?>
+        <br>
+        number of unique visitors
+        <br>
+        <?php echo $number_of_unique_homepage_visits ?>
+    </p>
     <a class="link_element" href="./auto_clear_storage_space.php">clear storage space</a>
     <div id="display_section">
         <br>

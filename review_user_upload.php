@@ -26,8 +26,8 @@
         header("Location: ./upload_review.php");
     }
     //
-    $video_title = $video_info[0]["title"];
-    $video_description = $video_info[0]["description"]; // description
+    $video_title = string_sanitize($video_info[0]["title"]);
+    $video_description = string_sanitize($video_info[0]["description"]); // description
     $video_uploader_id = $video_info[0]["uploader"]; // uploader
     $video_upload_date = $video_info[0]["upload_date"]; // upload_date
     $human_readable_date = date('m-d-Y H:i:s T', $video_upload_date);
@@ -45,7 +45,7 @@
     }
     // retrieve the username of the uploader
     $uploader_info = $database_access_object->prepared_statment_select_on_one_record("users", "user_id", $video_uploader_id, "s");
-    $uploader_username = $uploader_info[0]["user_name"];
+    $uploader_username = string_sanitize($uploader_info[0]["user_name"]);
     // recommendation bar settings
     $display_mode_input = "short"; // "full", "all" or "short"
     $override_default_start_values = true;

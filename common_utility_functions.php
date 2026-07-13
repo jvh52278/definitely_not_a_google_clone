@@ -151,4 +151,9 @@ function alt_40k_time_conversion ($int_unix_time_stamp) {
 
     return $return_value;
 }
+
+function string_sanitize($string_input) {
+    $return_value = htmlspecialchars($string_input, ENT_QUOTES, "UTF-8");
+    return $return_value;
+}
 ?>

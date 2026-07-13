@@ -30,8 +30,8 @@
         header("Location: ./not_found.php");
     }
     //
-    $video_title = $video_info[0]["title"];
-    $video_description = $video_info[0]["description"]; // description
+    $video_title = string_sanitize($video_info[0]["title"]);
+    $video_description = string_sanitize($video_info[0]["description"]); // description
     $video_uploader_id = $video_info[0]["uploader"]; // uploader
     $video_upload_date = $video_info[0]["upload_date"]; // upload_date
     //$human_readable_date = date('m-d-Y H:i:s T', $video_upload_date);
@@ -50,7 +50,7 @@
     }
     // retrieve the username of the uploader
     $uploader_info = $database_access_object->prepared_statment_select_on_one_record("users", "user_id", $video_uploader_id, "s");
-    $uploader_username = $uploader_info[0]["user_name"];
+    $uploader_username = string_sanitize($uploader_info[0]["user_name"]);
     // recommendation bar settings
     $display_mode_input = "short"; // "full", "all" or "short"
     $override_default_start_values = true;
@@ -67,6 +67,9 @@
     $search_input = check_and_replace_if_variable_is_empty(trim_spaces_from_string($video_title)); // retrieve this input for pagination view
     $seperated_search_terms = return_seperated_alnum_chars($search_input);
     $ignore_this = $video_id;
+
+    $viewcount_info = $database_access_object->prepared_statment_select_on_one_record("activity_log", "code_value", $video_id, "s");
+    $total_viewcount = count($viewcount_info);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -86,6 +89,7 @@
         <source src="<?php echo $video_file_alt ?>">
     </video>
     <div id="info_section">
+        <p style="font-size: smaller;">&#9654;&#xFE0E <?php echo $total_viewcount ?></p>
         <iframe id="vote_bar" src="./vote_bar.php" frameborder="0"></iframe>
         <h2><?php echo $video_title ?></h2>
         <h4>uploaded by <p style="display: inline-block; text-decoration: underline;"><?php echo $uploader_username ?></p> on <?php echo $human_readable_date ?></h4>
