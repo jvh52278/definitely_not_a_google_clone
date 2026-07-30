@@ -163,7 +163,7 @@ $input_video_description = trim_spaces_from_string($_POST["video_description"]);
                         $video_format_command = "ffprobe -v error -select_streams v:0 -show_entries stream=codec_name -of default=noprint_wrappers=1:nokey=1 $path_to_temporary_upload_file";
                         $video_format = trim(shell_exec($video_format_command));
                         //$c = $video_format;
-                        if ($video_aspect_ratio == "N/Ax") {
+                        if ($video_aspect_ratio != "using_this_method_because_video_metadata_is_too_variable_too_lazy_to_fix_properly") {
                             // secondary check if the aspect ratio is incorrectly determined
                             $width_retrieval_command = "ffprobe -v error -select_streams v:0 -show_entries stream=width -of default=nw=1:nk=1 $path_to_temporary_upload_file";
                             $height_retrieval_command = "ffprobe -v error -select_streams v:0 -show_entries stream=height -of default=nw=1:nk=1 $path_to_temporary_upload_file";
