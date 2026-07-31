@@ -170,11 +170,15 @@ $input_video_description = trim_spaces_from_string($_POST["video_description"]);
                             $video_width = trim(shell_exec($width_retrieval_command));
                             $video_height = trim(shell_exec($height_retrieval_command));
                             if ($video_width > 0 && $video_height > 0) {
+                                $c_4_3_general = round(4/3,9);
+                                $c_480_1 = round(854/480,9);
+                                $c_480_2 = round(848/480,9);
+                                $c_480_3 = round(852/480,9);
                                 $calc_ratio = round($video_width/$video_height,9);
                                 //$c = urldecode($calc_ratio);
                                 // 16:9 is 1.777777778
                                 // 9:16 is 0.5625
-                                if ($calc_ratio == 1.777777778) {
+                                if ($calc_ratio == 1.777777778 || $calc_ratio == $c_4_3_general || $calc_ratio == $c_480_1 || $calc_ratio == $c_480_2 || $calc_ratio == $c_480_3) {
                                     $video_aspect_ratio = "16:9";
                                     $c = 169;
                                 }

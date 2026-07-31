@@ -26,7 +26,7 @@ if ($upload_error_status == "2") {
     $upload_error = "The uploaded file must be smaller than 1.5GB";
 }
 if ($upload_error_status == "3") {
-    $upload_error = "The video length cannot exceed 20 minutes";
+    $upload_error = "The video length cannot exceed 30 minutes";
 }
 if ($upload_error_status == "4") {
     $upload_error = "The uploaded file must be in mp4 format, with an aspect ratio of 16:9 or 9:16";
